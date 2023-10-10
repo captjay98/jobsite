@@ -3,12 +3,14 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\User;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Seeker>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
 class SeekerFactory extends Factory
 {
+    protected $model = Seeker::class;
     /**
      * Define the model's default state.
      *
@@ -17,7 +19,28 @@ class SeekerFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => function () {
+                return User::Factory()->create(
+                    ['accounttype' => "seeker"]
+                )->id;
+            },
+            'phone' => $this->faker->phoneNumber(),
+            'city' => $this->faker->county(),
+            'state' => $this->faker->region(),
+            'country' => $this->faker->country(),
+            'dateofbirth' => $this->faker->date(),
+            'ethnicity' => $this->faker->randomElement(['African American', 'Asian', 'Caucasian', 'Hispanic', 'Native American', 'Other']),
+            'qualifications' => [
+                ['title' => 'BSc', 'from' => '2010', 'to' => '2015'],
+                ['title' => 'MSc', 'from' => '2016', 'to' => '2018']
+            ],
+            'experiences' => [
+                ['title' => 'FullStack Dev', 'from' => '2019', 'to' => '2020', 'at' => "FiFi Imagination"],
+                ['title' => 'MSc', 'from' => '2021', 'to' => '2022', 'at' => "Another Banger"]
+            ],
+            'cv' => $this->faker->word(),
+            'visa' => $this->faker->word(),
+            'passport' => $this->faker->word(),
         ];
     }
 }
