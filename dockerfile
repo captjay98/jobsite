@@ -36,7 +36,6 @@ RUN chmod -R 775 /var/www/html/jobsite/bootstrap/cache
 
 
 RUN php artisan config:clear
-RUN php artisan config:cache
 RUN php artisan route:clear
 RUN php artisan route:cache
 # RUN php artisan key:generate
