@@ -1,21 +1,20 @@
 <script setup>
-import GuestLayout from '@/Layouts/GuestLayout.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
+import { Head, Link, useForm } from "@inertiajs/vue3";
+import GuestLayout from "@/Layouts/GuestLayout.vue";
 
 const form = useForm({
-    name: '',
-    email: '',
-    password: '',
-    password_confirmation: '',
+    firstname: "",
+    lastname: "",
+    username: "",
+    email: "",
+    accounttype: "",
+    password: "",
+    password_confirmation: "",
 });
 
 const submit = () => {
-    form.post(route('register'), {
-        onFinish: () => form.reset('password', 'password_confirmation'),
+    form.post(route("register"), {
+        onFinish: () => form.reset("password", "password_confirmation"),
     });
 };
 </script>
@@ -23,81 +22,139 @@ const submit = () => {
 <template>
     <GuestLayout>
         <Head title="Register" />
-
-        <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="name" value="Name" />
-
-                <TextInput
-                    id="name"
-                    type="text"
-                    class="mt-1 block w-full"
-                    v-model="form.name"
-                    required
-                    autofocus
-                    autocomplete="name"
-                />
-
-                <InputError class="mt-2" :message="form.errors.name" />
+        <div class="w-96 h-[90%] rounded-md">
+            <div class="bg- rounded-md h-16 pt-3 mb-1">
+                <p class="text-lg my-2 font-semibold text-center text-blue-600">
+                    Create a Free Account
+                </p>
             </div>
 
-            <div class="mt-4">
-                <InputLabel for="email" value="Email" />
-
-                <TextInput
-                    id="email"
-                    type="email"
-                    class="mt-1 block w-full"
-                    v-model="form.email"
-                    required
-                    autocomplete="username"
-                />
-
-                <InputError class="mt-2" :message="form.errors.email" />
-            </div>
-
-            <div class="mt-4">
-                <InputLabel for="password" value="Password" />
-
-                <TextInput
-                    id="password"
-                    type="password"
-                    class="mt-1 block w-full"
-                    v-model="form.password"
-                    required
-                    autocomplete="new-password"
-                />
-
-                <InputError class="mt-2" :message="form.errors.password" />
-            </div>
-
-            <div class="mt-4">
-                <InputLabel for="password_confirmation" value="Confirm Password" />
-
-                <TextInput
-                    id="password_confirmation"
-                    type="password"
-                    class="mt-1 block w-full"
-                    v-model="form.password_confirmation"
-                    required
-                    autocomplete="new-password"
-                />
-
-                <InputError class="mt-2" :message="form.errors.password_confirmation" />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <Link
-                    :href="route('login')"
-                    class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+            <div class="w-full rounded-md py-2 mb-4">
+                <form
+                    @submit.prevent="submit"
+                    class="m-auto rounded-md w-[90%] h-[80%] my-2 px-4 pt-4 pb-6"
                 >
-                    Already registered?
-                </Link>
+                    <div class="text-center m-auto pt-2">
+                        <div>
+                            <div class="text-black mb-4 ml-3 flex justify-between">
+                                <div
+                                    class="py-2 border-2 border-blue-500 text-sm w-32 h-10 rounded-md"
+                                    :class="{ 'bg-blue-500': form.accounttype === 'seeker' }"
+                                    @click="form.accounttype = 'seeker'"
+                                >
+                                    <label for="seeker">Seeker</label>
+                                </div>
 
-                <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Register
-                </PrimaryButton>
+                                <div
+                                    class="py-2 border-2 border-blue-500 text-sm w-32 h-10 rounded-md"
+                                    :class="{
+                                        'bg-blue-500 shadow-2xl': form.accounttype === 'employer',
+                                    }"
+                                    @click="form.accounttype = 'employer'"
+                                >
+                                    <label for="employer">Employer</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-show="form.errors.accounttype">
+                            <p class="text-sm text-red-500">{{ form.errors.accounttype }}</p>
+                        </div>
+
+                        <div>
+                            <input
+                                class="mx-2 border-slate-300 bg-slate-100 my-2 w-full h-9 rounded-md shadow-xl"
+                                type="text"
+                                id="firstname"
+                                placeholder="First Name"
+                                v-model="form.firstname"
+                                required
+                            />
+                            <div v-show="form.errors.firstname">
+                                <p class="text-sm text-red-500">{{ form.errors.firstname }}</p>
+                            </div>
+                        </div>
+                        <div>
+                            <input
+                                class="mx-2 my-2 border-slate-300 bg-slate-100 w-full h-9 rounded-md shadow-xl"
+                                type="text"
+                                id="lastname"
+                                placeholder="Last Name"
+                                v-model="form.lastname"
+                                required
+                            />
+                            <div v-show="form.errors.lastname">
+                                <p class="text-sm text-red-500">{{ form.errors.lastname }}</p>
+                            </div>
+                        </div>
+                        <div>
+                            <input
+                                class="mx-2 my-2 w-full border-slate-300 bg-slate-100 h-9 rounded-md shadow-xl"
+                                type="text"
+                                id="username"
+                                placeholder="Username"
+                                v-model="form.username"
+                                required
+                            />
+                            <div v-show="form.errors.username">
+                                <p class="text-sm text-red-500">{{ form.errors.username }}</p>
+                            </div>
+                        </div>
+                        <div>
+                            <input
+                                class="mx-2 my-2 w-full border-slate-300 bg-slate-100 h-9 rounded-md shadow-xl"
+                                type="text"
+                                id="email"
+                                placeholder="Email"
+                                v-model="form.email"
+                                required
+                            />
+                            <div v-show="form.errors.email">
+                                <p class="text-sm text-red-500">{{ form.errors.email }}</p>
+                            </div>
+                        </div>
+                        <div>
+                            <input
+                                class="mx-2 my-2 w-full border-slate-300 bg-slate-100 h-9 rounded-md shadow-xl"
+                                type="password"
+                                id="password"
+                                placeholder="Password"
+                                v-model="form.password"
+                                required
+                            />
+                            <div v-show="form.errors.password">
+                                <p class="text-sm text-red-500">{{ form.errors.password }}</p>
+                            </div>
+                        </div>
+                        <div>
+                            <input
+                                class="mx-2 my-2 w-full border-slate-300 bg-slate-100 h-8 rounded-md shadow-xl"
+                                type="password"
+                                id="password"
+                                placeholder="Confirm Password"
+                                v-model="form.password_confirmation"
+                                required
+                            />
+                            <div v-show="form.errors.password_confirmation">
+                                <p class="text-sm text-red-500">
+                                    {{ form.errors.password_confirmation }}
+                                </p>
+                            </div>
+                        </div>
+                        <div>
+                            <button
+                                class="w-full bg-blue-500 mx-2 my-4 px-2 py-1 rounded-md text-white shadow-xl"
+                            >
+                                Register
+                            </button>
+                        </div>
+                        <Link :href="route('login')"
+                            ><p class="text-xs text-left px-4 pt-2">
+                                Already a Member? <span class="text-blue-500"> Sign in.</span>
+                            </p></Link
+                        >
+                    </div>
+                </form>
             </div>
-        </form>
+        </div>
     </GuestLayout>
 </template>
