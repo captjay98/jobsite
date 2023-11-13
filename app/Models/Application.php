@@ -19,12 +19,12 @@ class Application extends Model
 
     public function seeker()
     {
-        return $this->hasMany(Seeker::class);
+        return $this->belongsTo(Seeker::class, 'seeker_id');
     }
 
     public function job()
     {
-        return $this->hasMany(Job::class);
+        return $this->belongsTo(Job::class, 'job_id');
     }
 
 }
