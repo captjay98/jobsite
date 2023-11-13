@@ -4,16 +4,16 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 // use Illuminate\Support\Facades\DB;
-use App\Models\Seeker;
+use App\Models\Job;
 
-class SeekerSeeder extends Seeder
+class JobSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Seeker::Factory()->count(10)->create();
+        Job::Factory()->count(10)->create();
         //
     }
 }
