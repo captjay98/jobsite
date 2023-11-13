@@ -23,9 +23,9 @@ return new class () extends Migration {
                 ->on('jobs');
             $table->string('status')->enum(
                 'applied',
-                'interviewed',
-                'declined',
-                'hired'
+                'reviewing',
+                'rejected',
+                'accepted'
             )->default('applied');
             $table->timestamps();
 

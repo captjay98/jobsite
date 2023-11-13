@@ -12,6 +12,7 @@ return new class () extends Migration {
     {
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('avatar')->nullable();
             $table->string('firstname');
             $table->string('lastname');
             $table->string('username')->unique();
