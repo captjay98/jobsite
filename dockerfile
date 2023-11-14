@@ -34,10 +34,11 @@ RUN chmod -R 775 /var/www/html/jobsite/storage
 
 RUN chmod -R 775 /var/www/html/jobsite/bootstrap/cache
 
-
+RUN php artisan cache:clear
 RUN php artisan config:clear
 RUN php artisan route:clear
-RUN php artisan route:cache
+
+# RUN php artisan route:cache
 # RUN php artisan key:generate
 # RUN php artisan migrate
 # RUN php artisan db:seed
