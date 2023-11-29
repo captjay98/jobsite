@@ -71,6 +71,8 @@ class Kernel extends HttpKernel
 
 
     protected $routeMiddleware = [
-        'accounttype' => \App\Http\Middleware\AccountTypeMiddleware::class,
+        'account_type' => \App\Http\Middleware\AccountTypeMiddleware::class,
+        'is_superuser' => \App\Http\Middleware\SuperUserMiddleware::class,
+        'is_admin' => \App\Http\Middleware\AdminUserMiddleware::class,
         ];
 }
