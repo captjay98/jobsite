@@ -57,14 +57,13 @@ const drop = ref(false);
 
         <nav v-show="drop" class="transition ease-in">
             <div
-                class="transition ease-in duration-200 bg-blue-500 absolute top-20 right-5 px-4 py-4 rounded-xl"
+                class="text-white tracking-wider transition ease-in duration-200 bg-blue-500 absolute top-20 right-5 px-4 py-4 rounded-md"
             >
                 <ul v-for="link in links" class="px-2 py-2 text-left">
                     <li>
                         <Link :href="link.path">{{ link.name }}</Link>
                     </li>
                 </ul>
-                {{ console.log("ShowLink", showLink(employer)) }}
                 <ul class="px-2 py-2 text-left">
                     <li v-show="showLink(seeker)">
                         <Link href="/seeker">SDashboard</Link>
