@@ -28,44 +28,25 @@ Route::get('/', function () {
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
-        'jobs' => Job::take(15)->get()
+        // 'jobs' => Job::take(15)->get()
     ]);
 });
 
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-
-// Route::Resource('seeker', SeekerController::class)->only([
-//     'index','update'
-// ]);
-//
-// Route::Resource('employer', EmployerController::class)->only([
-//     'index','update'
-// ]);
+// Route::middleware('guest')->group(function () {
+// Route::group(function () {
+    Route::get('/jobs', [JobController::class, 'getAllJobs'])->name('jobs.all');
+    Route::post('/jobs', [JobController::class, 'searchJobs'])->name('jobs.search');
+    Route::get('/jobs/{job_id}', [JobController::class, 'getJob'])->name('jobs.one');
+// });
+// });
 
 
 #Admin Routes
-Route::middleware(['auth', 'accounttype:admin'])->group(function () {
+Route::middleware(['auth', 'is_admin:"true"'])->group(function () {
     Route::name('admin.')->prefix('admin')->group(function () {
         Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
-        // ROute::get('/profile', [EmployerController::class, 'show'])->name('profile');
-        // Route::patch('/profile', [EmployerController::class, 'update'])->name('update');
-
-        // Route::get('/jobs/create', [JobController::class, 'employerShowCreateJob'])->name('jobs.show');
-        // Route::patch('/jobs/update/{job_id}', [JobController::class, 'employerUpdateJob'])->name('jobs.update');
-        // Route::get('/jobs', [JobController::class, 'employerShowAll'])->name('jobs.all');
-        // Route::get('/jobs/{job_id}', [JobController::class, 'employerShowOne'])->name('jobs.one');
-        // Route::post('/jobs', [JobController::class, 'employerCreateJob'])->name('jobs.create');
 
 
         Route::get('/users', [AdminController::class, 'allUsers'])->name('users.all');
@@ -81,9 +62,6 @@ Route::middleware(['auth', 'accounttype:admin'])->group(function () {
         Route::get('/applications/{application_id}', [AdminController::class, 'allApplications'])->name('applications.all');
         Route::get('/applications/{application_id}', [AdminController::class, 'oneApplication'])->name('applications.one');
 
-
-
-
     });
 });
 
@@ -92,7 +70,7 @@ Route::middleware(['auth', 'accounttype:admin'])->group(function () {
 
 
 #Employer Routes
-Route::middleware(['auth', 'accounttype:employer'])->group(function () {
+Route::middleware(['auth', 'account_type:employer'])->group(function () {
     Route::name('employer.')->prefix('employer')->group(function () {
         Route::get('/dashboard', [EmployerController::class, 'index'])->name('dashboard');
         ROute::get('/profile', [EmployerController::class, 'show'])->name('profile');
@@ -118,7 +96,7 @@ Route::middleware(['auth', 'accounttype:employer'])->group(function () {
 
 
 #Seeker Routes
-Route::middleware(['auth', 'accounttype:seeker'])->group(function () {
+Route::middleware(['auth', 'account_type:seeker'])->group(function () {
 
     Route::name('seeker.')->prefix('seeker')->group(function () {
 
@@ -128,7 +106,7 @@ Route::middleware(['auth', 'accounttype:seeker'])->group(function () {
 
         Route::get('/jobs', [JobController::class, 'seekerShowAll'])->name('jobs.all');
         Route::get('/jobs/{job_id}', [JobController::class, 'seekerShowOne'])->name('jobs.one');
-
+        Route::post('/jobs', [JobController::class, 'seekerSearchJobs'])->name('jobs.search');
         Route::get('/applications', [ApplicationController::class, 'seekerShowAll'])->name('applications.all');
         Route::get('/applications/{application_id}', [ApplicationController::class, 'seekerShowOne'])->name('applications.one');
         Route::middleware('throttle:2:1');
