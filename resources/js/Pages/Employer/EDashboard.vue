@@ -12,21 +12,6 @@ const { employer, applications, jobs } = defineProps({
 const emps = ref(employer);
 const jbs = ref(jobs);
 const apps = ref(applications);
-
-// console.log(emps);
-// console.log(jbs);
-console.log(apps);
-// console.log(applications);
-// console.log(jobs);
-
-// const user = {
-//     firstname: ref(employer.user.firstname),
-//     lastname: ref(employer.user.lastname),
-//     username: ref(employer.user.username),
-//     email: ref(employer.user.email),
-// };
-
-// const form = useForm(user);
 </script>
 <template>
     <EmployerLayout>
@@ -144,13 +129,48 @@ console.log(apps);
         </div>
         <div class="mb-4 mt-4 m-auto w-[99%] px-4 py-4 rounded-xl">
             <h1 class="text-xl text-center font-semibold py-4">Recent Jobs</h1>
-
-            <div class="px-4 w-full rounded-xl m-auto flex flex-wrap justify-between">
-                <div class="w-[95%] m-auto h-16 my-4 bg-slate-200 rounded-xl">box</div>
-                <div class="w-[95%] m-auto h-16 my-4 bg-slate-200 rounded-xl">box</div>
-                <div class="w-[95%] m-auto h-16 my-4 bg-slate-200 rounded-xl">box</div>
-                <div class="w-[95%] m-auto h-16 my-4 bg-slate-200 rounded-xl">box</div>
+            <div
+                class="h-60 my-4 flex justify-center items-center align-middle"
+                v-show="jobs.length < 1"
+            >
+                <h1 class="text-2xl text-center">Sorry, no Jobs to show at the Moment.</h1>
             </div>
+            <div class="my-4 w-full h-auto px-4 py-4">
+                <div class="flex flex-wrap justify-around">
+                    <div
+                        v-for="job in jobs"
+                        class="bg-slate-200 shadow-2xl h-48 w-48 mx-2 my-4 px-2 py-2 flex flex-wrap rounded-md"
+                    >
+                        <Link :href="route('jobs.one', job.id)">
+                            <div
+                                class="flex flex-wrap justify-center px-2 py-1 my-1 w-full text-center"
+                            >
+                                <span class="text-sm mx-8">Job:</span>
+                                <span class="text-sm font-semibold">{{ job.title }}</span>
+                            </div>
+                            <div
+                                class="flex flex-wrap justify-center px-2 py-1 my-1 w-full text-center"
+                            >
+                                <span class="text-sm mx-8">Industry:</span>
+                                <span class="text-sm font-semibold">{{ job.industry }}</span>
+                            </div>
+                            <div
+                                class="flex flex-wrap justify-center px-2 py-1 my-1 w-full text-center"
+                            >
+                                <span class="text-sm mx-8">Salary: </span>
+                                <span class="text-sm font-semibold">{{ job.salary }}</span>
+                            </div>
+                        </Link>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="px-4 w-full rounded-xl m-auto flex flex-wrap justify-between"> -->
+            <!--     <div class="w-[95%] m-auto h-16 my-4 bg-slate-200 rounded-xl">box</div> -->
+            <!--     <div class="w-[95%] m-auto h-16 my-4 bg-slate-200 rounded-xl">box</div> -->
+            <!--     <div class="w-[95%] m-auto h-16 my-4 bg-slate-200 rounded-xl">box</div> -->
+            <!--     <div class="w-[95%] m-auto h-16 my-4 bg-slate-200 rounded-xl">box</div> -->
+            <!-- </div> -->
         </div>
     </EmployerLayout>
 </template>

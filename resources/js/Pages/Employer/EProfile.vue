@@ -33,27 +33,27 @@ const updateUser = () => {
 </script>
 <template>
     <EmployerLayout>
-        <div class="w-full rounded-md py-4 m-auto bg-ray-100">
-            <div class="mb-8 mt-4 ml-2 px-4 py-4 bg-white w-[98%] rounded-md">
-                <h1 class="text-xl text-left font-semibold py-4">Employer Profile</h1>
+        <div class="w-full rounded-md py-4 m-auto bg-gray-100">
+            <div class="mb-8 mt-4 px-4 py-4 bg-white w-full rounded-md">
+                <h1 class="text-xl text-center font-semibold py-4">Employer Details</h1>
             </div>
-            <div class="bg-white mx-2 my-8 w-[98%] rounded-md">
-                <form class="my-8 rounded-md" @submit.prevent="updateUser">
-                    <div class="pt-8 mx-4 my-4 flex align-middle justify-center">
+            <div class="bg-white my-8 w-[99%] m-auto rounded-md">
+                <form class="my-8 pb-8 rounded-md">
+                    <div class="pt-12 pb-4 mx-4 my-4 flex align-middle justify-center">
                         <h1 class="h-36 w-36 m-auto bg-blue-300 rounded-full">
                             <img class="w-full h-full" :src="'/storage/icons/avatar.png'" alt="" />
                         </h1>
                     </div>
 
                     <div
-                        class="flex flex-wrap my-8 m-auto justify-center w-[99%] md:w-[90%] lg:w-[50%] rounded-md"
+                        class="flex flex-wrap my-4 m-auto justify-around w-full md:w-[70%] lg:w-[50%] xl:w-[40%] rounded-md"
                     >
-                        <div class="text-sm text-left py-4 px-4">
+                        <div class="text-left py-4 px-1 max-sm:w-[140px]">
                             <label for="firstname"
-                                ><span class="text-sm px-2">First Name:</span></label
+                                ><span class="text-[12px] px-2">First Name:</span></label
                             >
                             <input
-                                class="flex row bg-gray-100 border-slate-300 shadow-2xl rounded-md font-semibold"
+                                class="flex row text-[13px] h-8 w-full bg-gray-100 border-inherit shadow-2xl rounded-md font-semibold"
                                 type="text"
                                 id="firstname"
                                 v-model="form.firstname"
@@ -65,12 +65,12 @@ const updateUser = () => {
                                 </p>
                             </div>
                         </div>
-                        <div class="text-sm text-left py-4 px-4">
+                        <div class="text-sm text-left py-4 px-1 max-sm:w-[140px]">
                             <label for="lastname"
-                                ><span class="text-sm px-2">Last Name:</span></label
+                                ><span class="text-[12px] px-2">Last Name:</span></label
                             >
                             <input
-                                class="flex row bg-gray-100 border-slate-300 shadow-2xl rounded-md font-semibold"
+                                class="flex row text-[13px] h-8 w-full bg-gray-100 border-inherit shadow-2xl rounded-md font-semibold"
                                 type="text"
                                 id="lastname"
                                 v-model="form.lastname"
@@ -85,12 +85,12 @@ const updateUser = () => {
                                 </p>
                             </div>
                         </div>
-                        <div class="text-sm text-left py-4 px-4">
-                            <label for="username"
-                                ><span class="text-sm px-2">User Name:</span></label
+                        <div class="text-sm text-left py-4 px-1 max-sm:w-[140px]">
+                            <label for="employer.user.ame"
+                                ><span class="text-[12px] px-2">User Name:</span></label
                             >
                             <input
-                                class="flex row bg-gray-100 border-slate-300 shadow-2xl rounded-md font-semibold"
+                                class="flex text-[13px] h-8 w-full row bg-gray-100 border-inherit shadow-2xl rounded-md font-semibold"
                                 type="text"
                                 id="username"
                                 v-model="form.username"
@@ -103,10 +103,10 @@ const updateUser = () => {
                             </div>
                         </div>
 
-                        <div class="text-sm text-left py-4 px-4">
-                            <label for="email"><span class="text-sm px-2">Email:</span></label>
+                        <div class="text-sm text-left py-4 px-1 max-sm:w-[140px]">
+                            <label for="email"><span class="text-[12px] px-2">Email:</span></label>
                             <input
-                                class="flex row bg-gray-100 border-slate-300 shadow-2xl rounded-md font-semibold"
+                                class="flex text-[13px] h-8 w-full row bg-gray-100 border-inherit shadow-2xl rounded-md font-semibold"
                                 type="text"
                                 id="email"
                                 v-model="form.email"
@@ -118,14 +118,14 @@ const updateUser = () => {
                                 </p>
                             </div>
                         </div>
-                    </div>
-                    <div class="flex justify-center w-64 m-auto">
-                        <Button
-                            class="mb-8 bg-blue-500 text-white px-6 py-2 rounded-md"
-                            type="submit"
-                        >
-                            Update
-                        </Button>
+                        <div class="flex justify-center mt-4 w-44 m-auto">
+                            <Button
+                                class="mb-8 bg-blue-500 text-white px-6 py-2 rounded-md"
+                                type="submit"
+                            >
+                                Update
+                            </Button>
+                        </div>
                     </div>
                 </form>
             </div>
