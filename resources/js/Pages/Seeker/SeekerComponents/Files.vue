@@ -33,13 +33,12 @@ const updateFile = () => {
         preserveScroll: true,
     });
 
-    // }
-    console.log("FILES", updatedFields);
+    // console.log("FILES", updatedFields);
 };
 </script>
 <template>
-    {{ console.log("FORM", form) }}
-    {{ console.log("UPDATED FIELDS", updatedFields) }}
+    <!-- {{ console.log("FORM", form) }} -->
+    <!-- {{ console.log("UPDATED FIELDS", updatedFields) }} -->
     <div
         class="w-full bg-white flex flex-wrap justify-center rounded-md my-4 px-2 py-2 border-slate-800"
     >

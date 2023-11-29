@@ -38,98 +38,111 @@ const updateQuali = () => {
 </script>
 <template>
     <!-- QUALIFICATIONS -->
-    <div class="lg:w-[48%] mx-3 m-auto">
-        <div class="m-auto w-[99%] px-4 py-4 rounded-md">
-            <h1 class="text-xl text-center font-semibold">Qualifications</h1>
+    <div class="mx-1 my-4 xl:w-[35%] lg:w-50%">
+        <div class="mt-1 m-auto w-[99%] px-2 py-2 bg-white rounded-md">
+            <h1 class="text-xl text-center font-semibold py-2">Qualifications</h1>
         </div>
-        <form class="" @submit.prevent="updateQuali">
-            <div class="mx-2 my-4 w-full flex flex-wrap justify-around">
+
+        <form class="my-2 bg-white rounded-md" @submit.prevent="updateQuali">
+            <div
+                :key="quali.id"
+                v-for="quali in qualifications"
+                class="border-inherit border-[1px] py-1 px-2 flex my-1 shadow-sm flex-wrap justify-around mt-1 m-auto w-full lg:w-[90%] rounded-md"
+            >
                 <div
-                    v-for="quali in qualifications"
-                    :key="quali.id"
-                    class="flex flex-wrap mt-8 m-auto justify-center lg:w-full rounded-md"
+                    class="text-white bg-blue-400 mt-12 w-[130px] h-[28px] px-1 pb-1 rounded-md flex align-middle"
                 >
-                    <div class="text-sm text-left pt-2 px-2">
+                    <div class="bg-blue-400 text-sm text-left py-2 px-">
                         <input
-                            class="flex h-8 w-16 border-slate-200 shadow-sm rounded-md font-semibold"
+                            class="bg-blue-400 text-center text-[11px] h-full flex w-[50%] border-none shadow-sm rounded-md font-semibold"
                             type="text"
                             id="from"
                             v-model="quali.from"
                         />
                     </div>
-                    <div class="text-sm text-left pt-2 px-2">
+                    <div class="bg-slat300 flex items-center">-</div>
+                    <div class="text-sm text-left py-2">
                         <input
-                            class="flex h-8 w-16 border-gray-200 shadow-sm rounded-md font-semibold"
+                            class="bg-blue-400 text-center text-[11px] h-full flex w-[50%] border-none shadow-sm rounded-md font-semibold"
                             type="text"
                             id="to"
                             v-model="quali.to"
                         />
                     </div>
-                    <div class="text-sm text-left pt-2 px-2">
+                </div>
+                <div class="-300">
+                    <div class="max-sm:w-[150px] m-auto text-sm text-left py-2 px-">
                         <input
-                            class="flex h-8 w-28 border-gray-100 shadow-sm rounded-md font-semibold"
+                            class="text-center h-8 w-full text-[14px] flex border-inherit shadow-sm rounded-md font-semibold"
                             type="text"
                             id="title"
                             v-model="quali.title"
                         />
                     </div>
-                </div>
-                <!-- UPLOAD -->
-                <div class="flex flex-wrap bg-white mt-8 m-auto justify-center w-full rounded-md">
-                    <div class="text-sm text-left pt-2 px-2">
-                        <label for="from"><span class="text-sm px-2">From:</span></label>
+                    <div class="flex items-center justify-center">-</div>
+                    <div class="max-sm:w-[150px] m-auto text-sm text-left py-2 px-">
                         <input
-                            class="flex h-8 bg-gray-100 border-slate-300 shadow-xl rounded-md font-semibold"
-                            type="date"
+                            class="text-center h-8 w-full text-[14px] flex border-inherit shadow-sm rounded-md font-semibold"
+                            type="text"
+                            id="place"
+                            v-model="quali.place"
+                        />
+                    </div>
+                </div>
+            </div>
+            <!-- UPLOAD -->
+            <div
+                class="border-inherit border-[1px] py-1 px-2 flex my-1 shadow-sm flex-wrap justify-around mt-1 m-auto w-full lg:w-[90%] rounded-md"
+            >
+                <div
+                    class="text-white bg-blue-400 mt-12 w-[130px] h-[28px] px-1 pb-1 rounded-md flex align-middle"
+                >
+                    <div class="bg-blue-400 text-sm text-left py-2 px-">
+                        <input
+                            class="bg-blue-400 text-center text-[11px] h-full flex w-[50%] border-none shadow-sm rounded-md font-semibold"
+                            type="text"
                             id="from"
                             v-model="form.qualification.from"
                         />
                     </div>
-                    <div class="text-sm text-left pt-2 px-2">
-                        <label for="to"><span class="text-sm px-2">To:</span></label>
+                    <div class="bg-slat300 flex items-center">-</div>
+                    <div class="text-sm text-left py-2">
                         <input
-                            class="flex h-8 bg-gray-100 border-slate-300 shadow-xl rounded-md font-semibold"
-                            type="date"
+                            class="bg-blue-400 text-center text-[11px] h-full flex w-[50%] border-none shadow-sm rounded-md font-semibold"
+                            type="text"
                             id="to"
                             v-model="form.qualification.to"
                         />
                     </div>
-                    <div class="text-sm text-left pt-2 px-2">
-                        <label for="title"><span class="text-sm px-2">Title:</span></label>
+                </div>
+                <div class="-300">
+                    <div class="max-sm:w-[150px] m-auto text-sm text-left py-2 px-">
                         <input
-                            class="flex h-8 w-44 bg-gray-100 border-slate-300 shadow-xl rounded-md font-semibold"
+                            class="text-center h-8 w-full text-[14px] flex border-inherit shadow-sm rounded-md font-semibold"
                             type="text"
                             id="title"
                             v-model="form.qualification.title"
                         />
                     </div>
-                </div>
-                <div v-show="form.errors.qualification">
-                    <p class="text-sm my-2 text-red-500 w-60">
-                        {{ form.errors.qualification }}
-                    </p>
-                </div>
-
-                <div class="mt-6 flex justify-center">
-                    <!-- <Link -->
-                    <!--     type="button" -->
-                    <!--     as="button" -->
-                    <!--     method="put" -->
-                    <!--     :href="route('seeker.update')" -->
-                    <!--     :data="{ -->
-                    <!--         qualification: { -->
-                    <!--             title: form.qualifications.title, -->
-                    <!--             to: form.qualifications.to, -->
-                    <!--             from: form.qualifications.from, -->
-                    <!--         }, -->
-                    <!--     }" -->
-                    <!-- > -->
-                    <div class="flex justify-center w-64 m-auto">
-                        <Button :disabled="form.processing" type="submit">
-                            Add Qualification
-                        </Button>
+                    <div class="flex items-center justify-center">-</div>
+                    <div class="max-sm:w-[150px] m-auto text-sm text-left py-2 px-">
+                        <input
+                            class="text-center h-8 w-full text-[14px] flex border-inherit shadow-sm rounded-md font-semibold"
+                            type="text"
+                            id="place"
+                        />
                     </div>
-                    <!-- </Link> -->
+                </div>
+            </div>
+
+            <div v-show="form.errors.qualification">
+                <p class="text-sm my-2 text-red-500 w-60">
+                    {{ form.errors.qualification }}
+                </p>
+            </div>
+            <div class="flex justify-center">
+                <div class="flex justify-center w-64 m-auto">
+                    <Button :disabled="form.processing" type="submit"> Add qualification </Button>
                 </div>
             </div>
         </form>

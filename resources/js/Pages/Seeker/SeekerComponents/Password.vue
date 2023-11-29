@@ -25,7 +25,7 @@ const updatedFields = computed(() => {
 
 const updatePassword = () => {
     if (!updatedFields.value.isEmpty) {
-        form.put(route("password.update"), updatedFields.value);
+        form.put(route("password.update"), { ...updatedFields.value, preserveScroll: true });
     }
     console.log("PASSWORD", updatedFields);
 };

@@ -7,27 +7,37 @@ import Experiences from "@/Pages/Seeker/SeekerComponents/Experiences.vue";
 import Files from "@/Pages/Seeker/SeekerComponents/Files.vue";
 import Password from "@/Pages/Seeker/SeekerComponents/Password.vue";
 
-const { seeker } = defineProps({
+const { seeker, message } = defineProps({
     seeker: Object,
+    message: Object,
 });
+if (message) {
+    console.log("MESSAGE", message.detail);
+}
 </script>
 <template>
+    <div v-show="message" class="animate-bounce repeat-2 absolute top-20 right-20 w-96 h-48 bg-blue-500">
+        UPDATE SUCCESFUL
+    </div>
+
     <SeekerLayout>
-        <div class="w-full rounded-2xl py-2 m-auto bg-gray-100">
+        <div class="max-sm:w-[99%] px-1 mr-1 rounded-md py-2 bg-gray-100">
             <div class="my-2 m-auto w-full px-4 py-4 bg-white rounded-md">
                 <h1 class="text-xl text-center font-semibold py-4">Seeker Profile</h1>
             </div>
             <!-- Profile Details -->
             <Details :seeker="seeker" />
-            <div class="w-full flex flex-wrap justify-center bg-white rounded-md my-2 px-1 py-1">
+
+            <div class="w-full flex flex-wrap justify-around bg-white rounded-md my-2 px-1 py-1">
+                <!-- EXPERIENCES -->
+                <Experiences :experiences="seeker.experiences" />
+
                 <!-- QUALIFICATIONS -->
                 <Qualifications :qualifications="seeker.qualifications" />
-
-                <!-- SKILLS -->
-                <Skill :skills="seeker.skills" />
             </div>
-            <!-- EXPERIENCES -->
-            <Experiences :experiences="seeker.experiences" />
+
+            <!-- SKILLS -->
+            <Skill :skills="seeker.skills" />
             <!-- FILES -->
             <Files :files="{ cv: seeker.cv, visa: seeker.visa, passport: seeker.passport }" />
             <!--Password Update-->

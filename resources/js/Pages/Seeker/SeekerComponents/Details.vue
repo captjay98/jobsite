@@ -19,6 +19,8 @@ const form = useForm({
     state: ref(seeker.state),
     country: ref(seeker.country),
     ethnicity: ref(seeker.ethnicity),
+    // profeesion: ref(seeker.profession),
+    // industry: ref(seeker.industry),
 });
 
 const updatedFields = computed(() => {
@@ -38,48 +40,74 @@ const updateUser = () => {
             preserveScroll: true,
         });
     }
-    console.log("DETAILS", updatedFields);
+    // console.log("DETAILS", updatedFields);
 };
+// console.log(seeker);
 </script>
 <template>
-    {{ console.log("CHANGED DETAILS", updatedFields) }}
-    <div class="w-full rounded-2xl py-2 m-auto bg-gray-100">
+    <!-- {{ console.log("CHANGED DETAILS", updatedFields) }} -->
+    <div class="w-full rounded-md my-4 py-2 m-auto bg-gray-100">
         <div
-            class="w-full flex flex-wrap justify-center bg-white rounded-md px-2 py-2 border-slate-800"
+            class="w-full flex flex-wrap justify-center bg-white rounded-md px-1 py-2 border-slate-800"
         >
             <form class="w-full m-auto px-1 py-2 rounded-md" @submit.prevent="updateUser">
-                <div class="w-[70%] pl-14 m-auto flex justify-center mb-4">
-                    <div class="rounded-full">
+                <div class="w-full flex flex-col items-center justify-center mb-4">
+                    <!-- <div -->
+                    <!--     V-show="seeker.user.avatar === null" -->
+                    <!--     class="rounded-full flex justify-center w-[150px]" -->
+                    <!-- > -->
+                    <!--     <img -->
+                    <!--         class="w-28 h-28" -->
+                    <!--         :src="'/storage/icons/avatar.png'" -->
+                    <!--         alt="Seeker Profile Picture" -->
+                    <!--     /> -->
+                    <!-- </div> -->
+
+                    <!-- :src="'/storage/avatars/seekerone/yGRn5HCN11ZwY2eJ0gpxL6hNGugrO5DK3aLuNYTg.jpg'" -->
+                    <div class="rounded-full flex justify-center w-[150px]">
                         <img
-                            class="w-28 h-28"
-                            :src="'/storage/icons/avatar.png'"
+                            class="w-28 h-28 rounded-full bg-blue-400"
                             alt="Seeker Profile Picture"
+                            :src="seeker.user.avatar"
                         />
-                        <!-- STYLE THE FILE INPUT -->
-                        <!-- <input -->
-                        <!--     @input="fileForm.avatar = $event.target.files[0]" -->
-                        <!--     type="file" -->
-                        <!--     id="avatar" -->
-                        <!--     class="bg-white" -->
-                        <!-- /> -->
                     </div>
-                    <div class="py-6">
-                        <p class="text-sm px-2 py-2 text-center">Select</p>
-                        <p class="text-sm px-2 py-2 text-center">Upload</p>
-                    </div>
+                    <input
+                        @input="form.avatar = $event.target.files[0]"
+                        type="file"
+                        id="avatar"
+                        class="file:bg-white file:border-none file:outline-white w-12 ml-2 file: text-[10px] file:h-6"
+                    />
+                    <Link
+                        as="button"
+                        method="post"
+                        :href="route('seeker.update')"
+                        :data="{
+                            _method: 'put',
+                            forceFormData: true,
+                            preserveScroll: true,
+                            avatar: form.avatar,
+                        }"
+                    >
+                        <button class="bg-white px-1 py-1 mt-1 text-[10px]">Upload</button>
+                    </Link>
+                    <!-- <div class="py-6"> -->
+                    <!--     <p class="text-sm px-2 py-2 text-center">Upload</p> -->
+                    <!-- </div> -->
                 </div>
                 <div class="mx-2 my-4 w-full flex flex-wrap justify-around">
-                    <div class="flex flex-wrap mt-2 m-auto justify-center lg:w-[50%] rounded-md">
-                        <div class="m-auto w-[99%] px-4 py-4 bg-white rounded-md">
-                            <h1 class="text-xl text-center font-semibold">Personal Details</h1>
+                    <div
+                        class="flex flex-wrap mt-2 m-auto justify-center xl:w-[45%] lg:w-[50%] rounded-md"
+                    >
+                        <div class="m-auto w-full px-1 py-4 bg-white rounded-md">
+                            <h1 class="text-lg text-center font-semibold">Personal Details</h1>
                         </div>
 
-                        <div class="text-sm text-left py-4 px-4">
+                        <div class="text-left py-4 px-2 max-sm:w-[160px]">
                             <label for="firstname"
-                                ><span class="text-sm px-2">First Name:</span></label
+                                ><span class="text-[12px] px-2">First Name:</span></label
                             >
                             <input
-                                class="flex h-8 w-56 row bg-gray-100 border-slate-300 shadow-sm rounded-md font-semibold"
+                                class="flex h-8 w-full text-[13px] row bg-gray-100 border-slate-300 shadow-sm rounded-md font-semibold"
                                 type="text"
                                 id="firstname"
                                 v-model="form.firstname"
@@ -91,12 +119,12 @@ const updateUser = () => {
                                 </p>
                             </div>
                         </div>
-                        <div class="text-sm text-left py-4 px-4">
+                        <div class="text-left py-4 px-2 max-sm:w-[160px]">
                             <label for="lastname"
-                                ><span class="text-sm px-2">Last Name:</span></label
+                                ><span class="text-[12px] px-2">Last Name:</span></label
                             >
                             <input
-                                class="flex h-8 w-56 row bg-gray-100 border-slate-300 shadow-sm rounded-md font-semibold"
+                                class="flex h-8 w-full text-[13px] row bg-gray-100 border-slate-300 shadow-sm rounded-md font-semibold"
                                 type="text"
                                 id="lastname"
                                 v-model="form.lastname"
@@ -109,12 +137,12 @@ const updateUser = () => {
                                 </p>
                             </div>
                         </div>
-                        <div class="text-sm text-left py-4 px-4">
+                        <div class="text-left py-4 px-2 max-sm:w-[160px]">
                             <label for="username"
-                                ><span class="text-sm px-2">User Name:</span></label
+                                ><span class="text-[12px] px-2">User Name:</span></label
                             >
                             <input
-                                class="flex h-8 w-56 row bg-gray-100 border-slate-300 shadow-sm rounded-md font-semibold"
+                                class="flex h-8 w-full text-[13px] row bg-gray-100 border-slate-300 shadow-sm rounded-md font-semibold"
                                 type="text"
                                 id="username"
                                 v-model="form.username"
@@ -126,10 +154,10 @@ const updateUser = () => {
                                 </p>
                             </div>
                         </div>
-                        <div class="text-sm text-left py-4 px-4">
-                            <label for="email"><span class="text-sm px-2">Email:</span></label>
+                        <div class="text-left py-4 px-2 max-sm:w-[160px]">
+                            <label for="email"><span class="text-[12px] px-2">Email:</span></label>
                             <input
-                                class="flex h-8 w-56 row bg-gray-100 border-slate-300 shadow-sm rounded-md font-semibold"
+                                class="flex h-8 w-full text-[13px] row bg-gray-100 border-slate-300 shadow-sm rounded-md font-semibold"
                                 type="text"
                                 id="email"
                                 v-model="form.email"
@@ -141,10 +169,10 @@ const updateUser = () => {
                                 </p>
                             </div>
                         </div>
-                        <div class="text-sm text-left py-4 px-4">
-                            <label for="phone"><span class="text-sm px-2">Phone:</span></label>
+                        <div class="text-left py-4 px-2 max-sm:w-[160px]">
+                            <label for="phone"><span class="text-[12px] px-2">Phone:</span></label>
                             <input
-                                class="flex h-8 w-56 row bg-gray-100 border-slate-300 shadow-sm rounded-md font-semibold"
+                                class="flex h-8 w-full text-[13px] row bg-gray-100 border-slate-300 shadow-sm rounded-md font-semibold"
                                 type="text"
                                 id="phone"
                                 v-model="form.phone"
@@ -152,15 +180,17 @@ const updateUser = () => {
                             />
 
                             <div v-show="form.errors.phone">
-                                <p class="text-sm my-2 text-red-500 w-60">
+                                <p class="text-sm my-2 text-red-500 w-[160px]">
                                     {{ form.errors.phone }}
                                 </p>
                             </div>
                         </div>
-                        <div class="text-sm text-left py-4 px-4">
-                            <label for="dateofbirth"><span class="text-sm px-2">DOB:</span></label>
+                        <div class="text-left py-4 px-2 max-sm:w-[160px]">
+                            <label for="dateofbirth"
+                                ><span class="text-[12px] px-2">DOB:</span></label
+                            >
                             <input
-                                class="flex h-8 w-56 row bg-gray-100 border-slate-300 shadow-sm rounded-md font-semibold"
+                                class="flex h-8 md:w-[185px] text-[13px] row bg-gray-100 border-slate-300 shadow-sm rounded-md font-semibold"
                                 type="date"
                                 id="dateofbirth"
                                 v-model="form.dateofbirth"
@@ -175,16 +205,16 @@ const updateUser = () => {
                         </div>
                     </div>
                     <div
-                        class="flex flex-wrap bg-white mt-2 m-auto justify-center lg:w-[50%] rounded-md"
+                        class="flex flex-wrap bg-white mt-2 m-auto justify-center xl:w-[45%] lg:w-[50%] rounded-md"
                     >
                         <div class="m-auto w-[99%] px-4 py-4 bg-white rounded-md">
-                            <h1 class="text-xl text-center font-semibold">Other Details</h1>
+                            <h1 class="text-lg text-center font-semibold">Other Details</h1>
                         </div>
 
-                        <div class="text-sm text-left py-4 px-4">
-                            <label for="city"><span class="text-sm px-2">City:</span></label>
+                        <div class="text-left py-4 px-2 max-sm:w-[150px]">
+                            <label for="city"><span class="text-[12px] px-2">City:</span></label>
                             <input
-                                class="flex h-8 w-56 row bg-gray-100 border-slate-300 shadow-sm rounded-md font-semibold"
+                                class="flex h-8 w-full text-[13px] row bg-gray-100 border-slate-300 shadow-sm rounded-md font-semibold"
                                 type="text"
                                 id="city"
                                 v-model="form.city"
@@ -196,10 +226,10 @@ const updateUser = () => {
                                 </p>
                             </div>
                         </div>
-                        <div class="text-sm text-left py-4 px-4">
-                            <label for="state"><span class="text-sm px-2">State:</span></label>
+                        <div class="text-left py-4 px-2 max-sm:w-[150px]">
+                            <label for="state"><span class="text-[12px] px-2">State:</span></label>
                             <input
-                                class="flex h-8 w-56 row bg-gray-100 border-slate-300 shadow-sm rounded-md font-semibold"
+                                class="flex h-8 w-full text-[13px] row bg-gray-100 border-slate-300 shadow-sm rounded-md font-semibold"
                                 type="text"
                                 id="state"
                                 v-model="form.state"
@@ -212,10 +242,12 @@ const updateUser = () => {
                                 </p>
                             </div>
                         </div>
-                        <div class="text-sm text-left py-4 px-4">
-                            <label for="country"><span class="text-sm px-2">Country:</span></label>
+                        <div class="text-left py-4 px-2 max-sm:w-[150px]">
+                            <label for="country"
+                                ><span class="text-[12px] px-2">Country:</span></label
+                            >
                             <input
-                                class="flex h-8 w-56 row bg-gray-100 border-slate-300 shadow-sm rounded-md font-semibold"
+                                class="flex h-8 w-full text-[13px] row bg-gray-100 border-slate-300 shadow-sm rounded-md font-semibold"
                                 type="text"
                                 id="country"
                                 v-model="form.country"
@@ -227,13 +259,12 @@ const updateUser = () => {
                                 </p>
                             </div>
                         </div>
-
-                        <div class="text-sm text-left py-4 px-4">
+                        <div class="text-left py-4 px-2 max-sm:w-[150px]">
                             <label for="ethnicity"
-                                ><span class="text-sm px-2">Ethnicity:</span></label
+                                ><span class="text-[12px] px-2">Ethnicity:</span></label
                             >
                             <input
-                                class="flex h-8 w-56 row bg-gray-100 border-slate-300 shadow-sm rounded-md font-semibold"
+                                class="flex h-8 w-full text-[13px] row bg-gray-100 border-slate-300 shadow-sm rounded-md font-semibold"
                                 type="text"
                                 id="ethnicity"
                                 v-model="form.ethnicity"
@@ -245,9 +276,45 @@ const updateUser = () => {
                                 </p>
                             </div>
                         </div>
+
+                        <!-- <div class="text-left py-4 px-2 max-sm:w-[150px]"> -->
+                        <!--     <label for="profession" -->
+                        <!--         ><span class="text-[12px] px-2">Profession:</span></label -->
+                        <!--     > -->
+                        <!--     <input -->
+                        <!--         class="flex h-8 w-full text-[13px] row bg-gray-100 border-slate-300 shadow-sm rounded-md font-semibold" -->
+                        <!--         type="text" -->
+                        <!--         id="ethnicity" -->
+                        <!--         v-model="form.profession" -->
+                        <!--         @input="updatedFields.profession = true" -->
+                        <!--     /> -->
+                        <!--     <div v-show="form.errors.profession"> -->
+                        <!--         <p class="text-sm my-2 text-red-500 w-60"> -->
+                        <!--             {{ form.errors.profession }} -->
+                        <!--         </p> -->
+                        <!--     </div> -->
+                        <!-- </div> -->
+
+                        <!-- <div class="text-left py-4 px-2 max-sm:w-[150px]"> -->
+                        <!--     <label for="industry" -->
+                        <!--         ><span class="text-[12px] px-2">Industry:</span></label -->
+                        <!--     > -->
+                        <!--     <input -->
+                        <!--         class="flex h-8 w-full text-[13px] row bg-gray-100 border-slate-300 shadow-sm rounded-md font-semibold" -->
+                        <!--         type="text" -->
+                        <!--         id="industry" -->
+                        <!--         v-model="form.industry" -->
+                        <!--         @input="updatedFields.industry = true" -->
+                        <!--     /> -->
+                        <!--     <div v-show="form.errors.industry"> -->
+                        <!--         <p class="text-sm my-2 text-red-500 w-60"> -->
+                        <!--             {{ form.errors.industry }} -->
+                        <!--         </p> -->
+                        <!--     </div> -->
+                        <!-- </div> -->
                     </div>
                 </div>
-                <div class="flex justify-center w-44 m-auto">
+                <div class="flex justify-center w-64 m-auto">
                     <Button :disabled="form.processing" type="submit"> Update </Button>
                 </div>
             </form>
