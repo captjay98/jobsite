@@ -39,9 +39,9 @@ const sideLinks = [
     <AuthenticatedLayout :links="links">
         <SideBar :sideLinks="sideLinks" />
 
-        <div class="h-auto w-screen bg-gray-100 mt-12 rounded-md">
-            <div class="ml-[11%] mb-4 px-4 py-4 mx-4 w-[88%] rounded-md">
-                <div class="bg-gray-100 my-2 w-full px-1 py-1 rounded-md">
+        <div class="min-h-screen max-w-screen bg-gray-100 mt-6 rounded-md">
+            <div class="ml-[12%] mb-4 px-1 py-2 mx-1 w-[88%] rounded-md">
+                <div class="bg-gray-100 my-1 w-full px-1 py-1 rounded-md">
                     <slot />
                 </div>
             </div>

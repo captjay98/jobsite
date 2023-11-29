@@ -10,7 +10,7 @@ const links = [
 
 const sideLinks = [
     {
-        name: "DashBoard",
+        name: "Dashboard",
         path: route("admin.dashboard"),
         img: "/storage/icons/dashboard.svg",
         url: "/admin/dashboard",
@@ -24,26 +24,26 @@ const sideLinks = [
     {
         name: "Seekers",
         path: route("admin.seekers.all"),
-        img: "/storage/icons/profile.svg",
+        img: "/storage/icons/applicants.png",
         url: "/admin/seekers",
     },
     {
         name: "Employers",
         path: route("admin.employers.all"),
-        img: "/storage/icons/profile.svg",
+        img: "/storage/icons/jobs3.png",
         url: "/admin/employer",
     },
 
     {
         name: "Jobs",
         path: route("admin.jobs.all"),
-        img: "/storage/icons/jobs2.png",
+        img: "/storage/icons/jobs.png",
         url: "/admin/jobs",
     },
     {
         name: "Applications",
         path: route("admin.applications.all"),
-        img: "/storage/icons/jobs3.png",
+        img: "/storage/icons/jobs2.png",
         url: "/admin/applications",
     },
 ];
@@ -52,9 +52,9 @@ const sideLinks = [
     <AuthenticatedLayout :links="links">
         <SideBar :sideLinks="sideLinks" />
 
-        <div class="h-auto w-screen bg-gray-100 mt-12 rounded-md">
-            <div class="ml-[11%] mb-4 px-4 py-4 mx-4 w-[88%] rounded-md">
-                <div class="bg-gray-100 my-2 w-full px-1 py-1 rounded-md">
+        <div class="h-auto max-w-screen bg-gray-100 mt-6 rounded-md">
+            <div class="ml-[12%] mb-4 px-1 py-4 w-[88%] rounded-md">
+                <div class="bg-gray-100 my-1 m-auto w-full px-1 py-1 rounded-md">
                     <slot />
                 </div>
             </div>

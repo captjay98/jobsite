@@ -40,13 +40,14 @@ const sideLinks = [
     <Head title="Seeker " />
 
     <AuthenticatedLayout :links="links">
-        <SideBar :sideLinks="sideLinks" />
-        <div class="min-h-screen h-auto w-screen mt-8 bg-slate-100 rounded-2xl">
-            <div class="ml-[11%] my-8 px-1 py-2 mx-4 w-[88%] bg-slate-100">
-                <div class="bg-slate-100 my-2 w-full px-1 py-1 rounded-md">
+        <div class="min-h-screen w-full bg-gray-100 mt-6 rounded-md">
+            <div class="ml-[12%] mb-4 px-1 py-2 w-[88%] rounded-md">
+                <div class="bg-gray-100 my-1 w-full px- py-1 rounded-md">
                     <slot />
                 </div>
             </div>
         </div>
+
+        <SideBar :sideLinks="sideLinks" />
     </AuthenticatedLayout>
 </template>
