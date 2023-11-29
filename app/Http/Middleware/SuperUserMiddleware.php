@@ -6,21 +6,23 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AccountTypeMiddleware
+class SuperUserMiddleware
 {
     /**
      * Handle an incoming request.
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, $account_type): Response
+
+    public function handle(Request $request, Closure $next): Response
     {
         $user = $request->user();
 
-        if ($user && $user->account_type === $account_type) {
+        if ($user && $user->is_superuser === true) {
             return $next($request);
         }
         return abort(403, 'Unauthorized');
 
     }
+
 }
