@@ -13,8 +13,6 @@ class SkillSeeder extends Seeder
      */
     public function run(): void
     {
-        //
-        // Skill::Factory()-> reate();
         $skills = [
     // Programming languages
     [

@@ -13,8 +13,9 @@ return new class () extends Migration {
         Schema::create('qualifications', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title')->nullable();
-            $table->date('from')->nullable();
-            $table->date('to')->nullable();
+            $table->string('place')->nullable();
+            $table->year('from')->nullable();
+            $table->year('to')->nullable();
             $table->integer('seeker_id')->nullable();
             $table->foreign('seeker_id')->references('id')->on('seekers')->onDelete('cascade');
             $table->timestamps();

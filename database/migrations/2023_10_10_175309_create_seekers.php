@@ -26,14 +26,8 @@ return new class () extends Migration {
             $table->string('cv')->nullable();
             $table->string('passport')->nullable();
             $table->string('visa')->nullable();
-            // $table->foreignId('qualifications')->nullable();
-            //   $table->foreign('user_id')
-            //    ->references('id')
-            //    ->on('users')
-            //    ->onDelete('cascade');
-
-            // $table->foreign('seeker_id')->references('id')->on('seekers')->onDelete('cascade');
             $table->string('skills')->nullable();
+            $table->string('profession')->nullable();
             $table->timestamps();
 
         });

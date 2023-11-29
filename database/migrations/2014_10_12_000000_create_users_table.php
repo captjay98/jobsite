@@ -17,10 +17,10 @@ return new class () extends Migration {
             $table->string('lastname');
             $table->string('username')->unique();
             $table->string('email')->unique();
-            $table->string('accounttype')->enum('seeker', 'employer', 'admin');
-            // $table->boolean('isseeker')->nullable();
-            // $table->boolean('isemployer')->nullable();
-            // $table->boolean('isadmin')->nullable();
+            $table->string('account_type')->enum('seeker', 'employer', 'admin');
+            $table->boolean('is_active')->default('true');
+            $table->boolean('is_superuser')->default('false');
+            $table->boolean('is_admin')->default('false');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

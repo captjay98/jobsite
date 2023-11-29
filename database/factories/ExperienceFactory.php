@@ -35,8 +35,8 @@ class ExperienceFactory extends Factory
             "seeker_id" => Seeker::inRandomOrder()->first()->id,
             "title" => $this->faker->randomElement($titles),
             "place" => $this->faker->randomElement($places),
-            "from" => $this->faker->date($max = now()->subYears($value = $this->faker->randomDigit())),
-            "to" => $this->faker->date($max = now()->subYear())
+            "from" => $this->faker->year($max = now()->subYears($value = $this->faker->randomDigit())),
+            "to" => $this->faker->year($max = now()->subYear())
         ];
     }
 }

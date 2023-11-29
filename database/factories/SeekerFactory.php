@@ -21,10 +21,25 @@ class SeekerFactory extends Factory
     public function definition(): array
     {
         // $skills = [];
+        $professions = [
+            "Software Developer",
+            "Web Developer",
+            "Front-end Developer",
+            "Back-end Developer",
+            "Full-stack Developer",
+            "Mobile App Developer",
+            "DevOps Engineer",
+            "Software Engineer",
+            "UI/UX Designer",
+            "QA Engineer",
+        ];
+
+
+
         return [
             'user_id' => function () {
                 return User::Factory()->create(
-                    ['accounttype' => "seeker"]
+                    ['account_type' => "seeker"]
                 )->id;
             },
             'phone' => $this->faker->phoneNumber(),
@@ -33,6 +48,7 @@ class SeekerFactory extends Factory
             'country' => $this->faker->country(),
             'dateofbirth' => $this->faker->date(),
             'skills' => Skill::inRandomOrder()->first()->id,
+            'profession' => $this->faker->randomElement($professions),
             'ethnicity' => $this->faker->randomElement(['African American', 'Asian', 'Caucasian', 'Hispanic', 'Native American', 'Other']),
                        'cv' => $this->faker->word(),
             'visa' => $this->faker->word(),

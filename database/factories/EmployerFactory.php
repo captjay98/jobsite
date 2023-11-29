@@ -22,7 +22,7 @@ class EmployerFactory extends Factory
         return [
             'user_id' => function () {
                 return User::Factory()->create([
-                    'accounttype' => 'employer'
+                    'account_type' => 'employer'
                 ])->id;
             },
             //

@@ -26,7 +26,7 @@ class UserFactory extends Factory
             'lastname' =>  $this->faker->name(),
             'username' =>  $this->faker->unique()->name(),
             'email' =>  $this->faker->unique()->safeEmail(),
-            'accounttype' =>  $this->faker->randomElement(['seeker', 'employer']),
+            // 'account_type' =>  $this->faker->randomElement(['seeker', 'employer']),
             // 'isseeker' =>  $this->faker->boolean(),
             // 'isemployer' =>  $this->faker->boolean(),
             // 'isadmin' =>  $this->faker->boolean(),

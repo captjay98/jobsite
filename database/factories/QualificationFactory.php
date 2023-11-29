@@ -32,8 +32,8 @@ class QualificationFactory extends Factory
         return [
             "seeker_id" => Seeker::inRandomOrder()->first()->id,
             "title" => $this->faker->randomElement($titles),
-            "from" => $this->faker->date($max = now()->subYears($value = 4)),
-            "to" => $this->faker->date($max = now()->subYear())
+            "from" => $this->faker->year($max = now()->subYears($value = 4)),
+            "to" => $this->faker->year($max = now()->subYear())
         ];
     }
 }
