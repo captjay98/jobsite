@@ -40,12 +40,17 @@ class AdminController extends Controller
 
     public function deactivateUser(Request $request, $user_id)
     {
-
-        $validated_data = $request->validate(['status' => 'sometimes|bool']);
+        $admin = $request->user();
+        // dd($admin);
+        $validated_data = $request->validate(['isactive' => 'required']);
+        // dd($validated_data);
         $user = User::where('id', $user_id)->first();
-        $user->is_active = $validated_data['status'];
-        $user->save();
-        return Inertia::render('Admin/OneUser', ['user' => $user]);
+        if ($admin->is_superuser) {
+            $user->is_active = $validated_data['isactive'];
+            $user->save();
+            return Inertia::render('Admin/User', ['user' => $user]);
+        }
+        Inertia::render('NotAuthorized');
 
     }
 
@@ -74,7 +79,7 @@ class AdminController extends Controller
 
     public function oneSeeker($user_id)
     {
-        $seeker = Seeker::with('user')->where('id', $user_id)->first();
+        $seeker = Seeker::with('user', 'experiences', 'qualifications')->where('id', $user_id)->first();
         return Inertia::render('Admin/OneSeeker', ['seeker' => $seeker]);
 
     }

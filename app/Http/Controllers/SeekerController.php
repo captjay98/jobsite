@@ -25,7 +25,7 @@ class SeekerController extends Controller
                                     ->orderBy('updated_at', 'DESC')
                                     ->take(5)
                                     ->get();
-        $jobs = Job::where('industry', 'Healthcare')->take(5)->get();
+        $jobs = Job::where('title', $seeker->profession || 'industry', $seeker->industry)->take(10)->get();
         return Inertia::render(
             'Seeker/SDashboard',
             [
@@ -48,7 +48,8 @@ class SeekerController extends Controller
         return Inertia::render(
             'Seeker/SProfile',
             [
-                'seeker' => $seeker,$qualifications,$experiences
+                'seeker' => $seeker,$qualifications,$experiences,
+                // 'message' => 'Seeker Profile'
             ]
         );
     }
@@ -130,29 +131,40 @@ class SeekerController extends Controller
         //     $seeker->save;
         // }
         if ($request->hasFile('cv')) {
-            $cv_path = $request->file('cv')->store("cvs/$user", 'local');
+            $cv_path = $request->file('cv')->store("cvs/$user", 'public');
             $seeker->cv = $cv_path;
             $seeker->save();
             // dd($cv_path);
         }
         if ($request->hasFile('visa')) {
-            $visa_path = $request->file('visa')->store("visas/$user", 'local');
+            $visa_path = $request->file('visa')->store("visas/$user", 'public');
             $seeker->visa = $visa_path;
             $seeker->save();
             // dd($visa_path);
         }
         if ($request->hasFile('passport')) {
-            $passport_path = $request->file('passport')->store("passports/$user", 'local');
+            $passport_path = $request->file('passport')->store("passports/$user", 'public');
             $seeker->passport = $passport_path;
             $seeker->save();
         }
         if ($request->hasFile('avatar')) {
-            $avatar_path = $request->file('avatar')->store("avatars/$user", 'local');
-            $seeker->avatar = $avatar_path;
-            $seeker->save();
+            $avatar_path = $request->file('avatar')->store("avatars/$user", 'public');
+            // dd($avatar_path);
+            $seeker->user->avatar = $avatar_path;
+            $seeker->user->save();
         }
+        // dd($seeker->user);
+        $qualifications = $seeker->qualifications;
+        $experiences = $seeker->experiences;
+        return Inertia::render(
+            'Seeker/SProfile',
+            [
+                'seeker' => $seeker,$qualifications,$experiences,
+                'message' => ['detail'=>'Seeker Profile Updated']
+            ]
+        );
 
-        return redirect()->route('seeker.update')->with('message', 'Profile Updated Succesfully');
+        // return redirect()->route('seeker.profile',)->with('message', 'Profile Updated Succesfully');
     }
 
 
