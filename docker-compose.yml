@@ -1,0 +1,56 @@
+services:
+   webserver:
+     image: nginx
+     build:
+       context: .
+       dockerfile: ./nginx/Dockerfile
+     container_name: jobsite_nginx
+     ports:
+       - 5000:80
+
+   php:
+     image: php:8.2-fpm
+     build:
+       context: .
+       dockerfile: ./Dockerfile
+     container_name: jobsite_laravel
+     expose:
+       - 9000
+
+
+
+
+
+
+
+# version: "3"
+
+# services:
+#   jobsite_app:
+#     container_name: Jobsite_Container
+#     build:
+#       context: .
+#       dockerfile: ./Dockerfile
+#     expose:
+#        - 9000
+#     volumes:
+#       - .:/var/www/html/jobsite
+#     networks:
+#       - app_network
+
+#   webserver:
+#     container_name: Nginx_Container
+#     build:
+#       context: .
+#       dockerfile: ./nginx/Dockerfile
+#     ports:
+#       - "8080:80"
+#     depends_on:
+#       - jobsite_app
+#     networks:
+#       - app_network
+
+# networks:
+#   app_network:
+#     driver: bridge
+
