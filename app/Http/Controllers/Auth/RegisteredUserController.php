@@ -38,7 +38,7 @@ class RegisteredUserController extends Controller
             'lastname' => 'required|string|max:255',
             'username' => 'required|string|max:25|unique:'.User::class,
             'email' => 'required|string|email|max:255|unique:'.User::class,
-            'accounttype' => 'required|string|',
+            'account_type' => 'required|string|',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
@@ -47,15 +47,15 @@ class RegisteredUserController extends Controller
             'firstname' => $request->firstname,
             'lastname' => $request->lastname,
             'username' => $request->username,
-            'accounttype' => $request->accounttype,
+            'account_type' => $request->account_type,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
         var_dump($user->id);
 
-        if ($request->accounttype === "employer") {
+        if ($request->account_type === "employer") {
             Employer::create(['user_id' => $user->id]);
-        } elseif ($request->accounttype === "seeker") {
+        } elseif ($request->account_type === "seeker") {
             Seeker::create(['user_id' => $user->id]);
         }
 
@@ -63,11 +63,14 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        if ($request->accounttype === "employer") {
+        if ($request->account_type === "employer") {
             return redirect(RouteServiceProvider::EHOME);
-        } elseif ($request->accounttype === "seeker") {
+        } elseif ($request->account_type === "seeker") {
             return redirect(RouteServiceProvider::SHOME);
-        }
+        } // elseif ($request->account_type === "admin") {
+        //     return redirect(RouteServiceProvider::SHOME);
+        // }
+
 
         return redirect(RouteServiceProvider::HOME);
     }

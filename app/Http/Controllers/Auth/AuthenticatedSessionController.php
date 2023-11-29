@@ -28,18 +28,30 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
+    public function store(LoginRequest $request)
     {
         $request->authenticate();
+        // dd(Auth()->user()->is_active);
+        if (!Auth()->user()->is_active) {
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+            return abort(403, 'Account Deactivated, Contact Admin.');
+        }
 
         $request->session()->regenerate();
-        if (Auth()->user()->accounttype === "employer") {
+        if (Auth()->user()->account_type === "employer") {
             return redirect(RouteServiceProvider::EHOME);
-        } elseif (Auth()->user()->accounttype === "seeker") {
+
+        } elseif (Auth()->user()->account_type === "seeker") {
             return redirect(RouteServiceProvider::SHOME);
+
+        } elseif (Auth()->user()->is_admin === true) {
+            return redirect(RouteServiceProvider::AHOME);
         }
 
         return redirect()->intended(RouteServiceProvider::HOME);
+
+
     }
 
     /**
