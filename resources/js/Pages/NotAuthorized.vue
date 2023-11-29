@@ -1,7 +1,8 @@
 <script setup>
 import GuestLayout from "@/Layouts/AuthenticatedLayout.vue";
 
-defineProps({ error: Object });
+defineProps({ error });
+console.log(error);
 </script>
 <template>
     <GuestLayout>

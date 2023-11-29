@@ -7,7 +7,7 @@ const form = useForm({
     lastname: "",
     username: "",
     email: "",
-    accounttype: "",
+    account_type: "",
     password: "",
     password_confirmation: "",
 });
@@ -39,8 +39,8 @@ const submit = () => {
                             <div class="text-black mb-4 ml-3 flex justify-between">
                                 <div
                                     class="py-2 border-2 border-blue-500 text-sm w-32 h-10 rounded-md"
-                                    :class="{ 'bg-blue-500': form.accounttype === 'seeker' }"
-                                    @click="form.accounttype = 'seeker'"
+                                    :class="{ 'bg-blue-500': form.account_type === 'seeker' }"
+                                    @click="form.account_type = 'seeker'"
                                 >
                                     <label for="seeker">Seeker</label>
                                 </div>
@@ -48,16 +48,16 @@ const submit = () => {
                                 <div
                                     class="py-2 border-2 border-blue-500 text-sm w-32 h-10 rounded-md"
                                     :class="{
-                                        'bg-blue-500 shadow-2xl': form.accounttype === 'employer',
+                                        'bg-blue-500 shadow-2xl': form.account_type === 'employer',
                                     }"
-                                    @click="form.accounttype = 'employer'"
+                                    @click="form.account_type = 'employer'"
                                 >
                                     <label for="employer">Employer</label>
                                 </div>
                             </div>
                         </div>
-                        <div v-show="form.errors.accounttype">
-                            <p class="text-sm text-red-500">{{ form.errors.accounttype }}</p>
+                        <div v-show="form.errors.account_type">
+                            <p class="text-sm text-red-500">{{ form.errors.account_type }}</p>
                         </div>
 
                         <div>

@@ -2,6 +2,8 @@
 import { Head, Link, usePage } from "@inertiajs/vue3";
 import PageHeader from "@/Components/PageHeader.vue";
 import PageFooter from "@/Components/PageFooter.vue";
+import Search from "@/Components/Search.vue";
+import Faqs from "./Faqs.vue";
 
 defineProps({
     canLogin: {
@@ -41,51 +43,29 @@ const links = [
     <PageHeader :links="links" />
     <div class="h-auto w-screen bg-blue-100 mt-12">
         <div class="bg-slate-100 min-h-auto">
-            <div class="lg:py-20 g-blue-500 mt-36 px-8 flex flex-wrap justify-between items-end">
-                <div class="lg:w-[50%] w-full px-10 py-4 mb-16">
-                    <h1 class="text-5xl tracking-tight">
-                        Welcome to <span class="text-blue-500">JobSite</span>
-                    </h1>
-                    <h2 class="text-3xl tracking-tight">The Easiest Way To Find A Job</h2>
-                    <p class="text-md leading-relaxed">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consectetur
-                        assumenda maiores delectus amet similique adipisci quaerat impedit in maxime
-                        hic repudiandae tempore nihil excepturi commodi pariatur cum, dignissimos
-                        molestiae beatae!
-                    </p>
-                    <form
-                        class="g-blue-200 flex flex-wrap justify-center mt-4 px-1 py-1 rounded-md"
-                    >
-                        <input
-                            class="w-28 bg-blue-100 h-8 rounded-sm text-sm text-center focus:outline-slate-100 focus:ring-slate-100 border-none"
-                            type="text"
-                            value=""
-                            id=""
-                            placeholder="Industry"
-                        />
-                        <input
-                            class="w-28 bg-blue-100 h-8 rounded-sm text-sm text-center focus:outline-slate-100 focus:ring-slate-100 border-none"
-                            type="text"
-                            value=""
-                            id=""
-                            placeholder="Location"
-                        />
-                        <input
-                            class="w-28 bg-blue-100 h-8 rounded-sm text-sm text-center focus:outline-slate-100 focus:ring-slate-100 border-none"
-                            type="text"
-                            value=""
-                            id=""
-                            placeholder="Keyword"
-                        />
-                        <button
-                            class="w-28 bg-blue-500 px-3 py-1 rounded-sm text-slate-200 hover:bg-blue-700 active:bg-blue-900"
-                            bg-blue-500
-                        >
-                            Search
-                        </button>
-                    </form>
+            <div
+                class="lg:py-20 lg:mt-28 max-sm:mt-24 px- flex flex-wrap justify-between items-end"
+            >
+                <div class="max-sm:px-2 lg:w-[50%] w-fullpy-4 mb-16 max-sm:mb-10">
+                    <div class="px-14">
+                        <h1 class="text-5xl max-sm:text-4xl leading-tight tracking-tight">
+                            Welcome to <span class="text-blue-500">JobSite</span>
+                        </h1>
+                        <h2 class="text-3xl max-sm:text-2xl leading-tight tracking-tight">
+                            The Easiest Way To Find A Job
+                        </h2>
+                        <p class="md:pr-44 text-md max-sm:text-[14px] leading-5">
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consectetur
+                            assumenda maiores delectus amet similique adipisci quaerat impedit in
+                            maxime hic repudiandae tempore nihil excepturi commodi pariatur cum,
+                            dignissimos molestiae beatae!
+                        </p>
+                    </div>
+                    <Search />
                 </div>
-                <div class="lg:w-[50%] w-full px-4 py-4 flex justify-center items-center">
+                <div
+                    class="lg:w-[50%] md:px-8 w-full max-sm:pt-0 px-2 py-2 flex justify-center items-center"
+                >
                     <!-- <h1>This is going to be an image</h1> -->
                     <img
                         class="bg-white rounded-lg h-full w-full"
@@ -97,40 +77,46 @@ const links = [
         </div>
         <div class="h-auto bg-blue-100 my-16 lg:px-28 px-8 py-28">
             <div class="flex flex-wrap justify-between items-center mb-4">
-                <div class="lg:w-[50%] w-full flex justify-center">
+                <div class="lg:w-[50%] md:px-8 w-full flex justify-center">
                     <img
                         class="bg-white rounded-lg h-full w-full"
                         :src="'/storage/icons/jobsite2.jpg'"
                         alt=""
                     />
                 </div>
-                <div class="lg:w-[50%] w-full lg:px-8 px-2 py-16">
+                <div class="lg:w-[50%] md:px-8 w-full lg:px-8 px-2 py-16">
                     <h4 class="text-2xl">Thousands of Jobs</h4>
                     <h2 class="text-4xl">Choose a Job That Perfectly Fits Your Criteria</h2>
                     <p class="text-md">
                         Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum
                         sint consectetur cupidatat.
                     </p>
-                    <button class="bg-blue-500 px-3 py-2 my-4 rounded-md text-white">
-                        Search Jobs
-                    </button>
+
+                    <Link as="button" :href="route('jobs.all')">
+                        <button class="bg-blue-500 px-3 py-2 my-4 rounded-md text-white">
+                            Search Jobs
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>
         <div class="h-auto bg-slate-100 my-16 lg:px-28 px-8 py-36">
             <div class="flex flex-wrap justify-between items-center">
-                <div class="lg:w-[50%] w-full lg:px-4 px-2 py-16">
+                <div class="lg:w-[50%] md:px-8 w-full lg:px-4 px-2 py-16">
                     <h4 class="text-2xl">Thousands of Applicants</h4>
                     <h2 class="text-4xl">Get Applications From the Right Talents</h2>
                     <p class="text-md">
                         Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum
                         sint consectetur cupidatat.
                     </p>
-                    <button class="bg-blue-500 px-3 py-2 my-4 rounded-md text-white">
-                        Search Jobs
-                    </button>
+
+                    <Link as="button" :href="route('jobs.all')">
+                        <button class="bg-blue-500 px-3 py-2 my-4 rounded-md text-white">
+                            Search Jobs
+                        </button>
+                    </Link>
                 </div>
-                <div class="lg:w-[50%] w-full">
+                <div class="lg:w-[50%] md:px-8 w-full">
                     <img
                         class="-96 -96 bg-white rounded-lg h-full w-full"
                         :src="'/storage/icons/jobsite3.png'"
@@ -265,5 +251,6 @@ const links = [
             </div>
         </div>
     </div>
+    <Faqs />
     <PageFooter />
 </template>
