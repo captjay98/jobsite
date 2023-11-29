@@ -9,14 +9,10 @@ const { admin, users, jobs, applications, seekers, employers } = defineProps({
     seekers: Object,
     employers: Object,
 });
-
-const tUsers = [];
 </script>
 
 <template>
     <AdminLayout>
-        <!-- {{ console.log(Object.values(users) }} -->
-        <!-- {{ console.log(Object.keys(users) }} -->
         <div class="shadow-sm w-full rounded-xl px-1 py-4 flex flex-wrap justify-evenly">
             <div class="px-1 py-1 w-56 h-24 my-4 m-auto bg-gray-100 rounded-lg">
                 <div
@@ -26,7 +22,7 @@ const tUsers = [];
                         <div
                             class="w-full h-full bg-blue-300 flex justify-center px-4 py-4 rounded-lg"
                         >
-                            <img :src="'/storage/icons/applicants.png'" alt="" />
+                            <img :src="'/storage/icons/profile.svg'" alt="" />
                         </div>
                     </div>
                     <div class="w-7/12 py-4 px- bg-gray-100 rounded-lg">
@@ -45,7 +41,7 @@ const tUsers = [];
                         <div
                             class="w-full h-full bg-blue-300 flex justify-center px-3 py-4 rounded-lg"
                         >
-                            <img :src="'/storage/icons/jobs.png'" alt="" />
+                            <img :src="'/storage/icons/applicants.png'" alt="" />
                         </div>
                     </div>
                     <div class="w-7/12 py-4 px-1 bg-gray-100 rounded-lg">
@@ -54,153 +50,216 @@ const tUsers = [];
                     </div>
                 </div>
             </div>
-            <div class="px-1 py-1 w-56 h-28 my-4 m-auto bg-gray-100 rounded-lg">
+            <div class="px-1 py-1 w-56 h-24 my-4 m-auto bg-gray-100 rounded-lg">
                 <div
-                    class="px-1 py-1 h-full w-full flex justify-between bg-gray-100 rounded-lg shadow-lg"
+                    class="px- py-1 h-full w-full flex justify-between bg-gray-100 rounded-lg shadow-lg"
                 >
-                    <div class="w-2/5 px-3 py-3 rounded-lg">
+                    <div class="w-2/5 px-3 py-2 rounded-lg">
                         <div
-                            class="w-full h-full bg-blue-300 flex justify-center px-3 py-4 rounded-lg"
+                            class="w-full h-full bg-blue-300 flex justify-center px-4 py-4 rounded-lg"
                         >
-                            <img :src="'/storage/icons/jobs2.png'" alt="" />
+                            <img :src="'/storage/icons/jobs3.png'" alt="" />
                         </div>
                     </div>
-                    <div class="w-7/12 py-4 px-1 bg-gray-100 rounded-lg">
-                        <p class="py-1 text-left font-semibold">{{ employers.length }}</p>
-                        <p class="py-1 text-sm text-left">Total Employers</p>
+                    <div class="w-7/12 py-4 px- bg-gray-100 rounded-lg">
+                        <p class="py-1 text-left font-semibold">
+                            {{ employers.length }}
+                        </p>
+                        <p class="text-sm text-left">Total Employers</p>
                     </div>
                 </div>
             </div>
-            <div class="px-1 py-1 w-56 h-28 my-4 m-auto bg-gray-100 rounded-lg">
+            <div class="px-1 py-1 w-56 h-24 my-4 m-auto bg-gray-100 rounded-lg">
                 <div
-                    class="px-1 py-1 h-full w-full flex justify-between bg-gray-100 rounded-lg shadow-lg"
+                    class="px- py-1 h-full w-full flex justify-between bg-gray-100 rounded-lg shadow-lg"
                 >
-                    <div class="w-2/5 px-3 py-3 rounded-lg">
+                    <div class="w-2/5 px-3 py-2 rounded-lg">
                         <div
-                            class="w-full h-full bg-blue-300 flex justify-center px-3 py-4 rounded-lg"
+                            class="w-full h-full bg-blue-300 flex justify-center px-4 py-4 rounded-lg"
                         >
-                            <img :src="'/storage/icons/jobs2.png'" alt="" />
+                            <img :src="'/storage/icons/jobs.png'" alt="" />
                         </div>
                     </div>
-                    <div class="w-7/12 py-4 px-1 bg-gray-100 rounded-lg">
-                        <p class="py-1 text-left font-semibold">{{ jobs.length }}</p>
-                        <p class="py-1 text-sm text-left">Total Jobs</p>
+                    <div class="w-7/12 py-4 px- bg-gray-100 rounded-lg">
+                        <p class="py-1 text-left font-semibold">
+                            {{ jobs.length }}
+                        </p>
+                        <p class="text-sm text-left">Total Jobs</p>
                     </div>
                 </div>
             </div>
-            <div class="px-1 py-1 w-56 h-28 my-4 m-auto bg-gray-100 rounded-lg">
+            <div class="px-1 py-1 w-56 h-24 my-4 m-auto bg-gray-100 rounded-lg">
                 <div
-                    class="px-1 py-1 h-full w-full flex justify-between bg-gray-100 rounded-lg shadow-lg"
+                    class="px- py-1 h-full w-full flex justify-between bg-gray-100 rounded-lg shadow-lg"
                 >
-                    <div class="w-2/5 px-3 py-3 rounded-lg">
+                    <div class="w-2/5 px-3 py-2 rounded-lg">
                         <div
-                            class="w-full h-full bg-blue-300 flex justify-center px-3 py-4 rounded-lg"
+                            class="w-full h-full bg-blue-300 flex justify-center px-4 py-4 rounded-lg"
                         >
                             <img :src="'/storage/icons/jobs2.png'" alt="" />
                         </div>
                     </div>
-                    <div class="w-7/12 py-4 px-1 bg-gray-100 rounded-lg">
-                        <p class="py-1 text-left font-semibold">{{ applications.length }}</p>
-                        <p class="py-1 text-sm text-left">Total Applications</p>
+                    <div class="w-7/12 py-4 px- bg-gray-100 rounded-lg">
+                        <p class="py-1 text-left font-semibold">
+                            {{ applications.length }}
+                        </p>
+                        <p class="text-sm text-left">Total Applications</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="min-h-screen bg-white">
-            <div class="px-4 py-4 flex flex-wrap space-x-5 justify-center">
-                <div class="ml-5 bg-slate-100 my-4 w-96 border-black border-2 rounded-md">
-                    <h3 class="-center font-semibold text-xl px-2 py-2 text-left">Users</h3>
-                    <table class="bg-slate-100 divide-black divide--2 divide-y-2 w-full">
+        <div class="min-h-screen -white">
+            <div class="px-1 py-1 flex flex-wrap justify-around">
+                <div class="my-4 w-[340px]">
+                    <h3 class="text-center font-semibold text-xl py-2">Users</h3>
+                    <table
+                        class="bg-gray-100 my-2 border-inherit shadow-2xl border-2 rounded-md hover:translate-y-2 overflow-auto"
+                    >
                         <thead class="bg-white-100 w-full">
                             <tr class="text-left px-2 py-2">
-                                <th class="px-2 py-2">Title</th>
-                                <th class="px-2 py-2">Date Added</th>
+                                <th class="px-3 py-2 text-[14px]">ID</th>
+                                <th class="px-2 py-2 text-[14px]">Name</th>
+                                <th class="px-2 py-2 text-[14px]">Email</th>
                             </tr>
                         </thead>
-                        <tbody class="text-sm divide-y divide-black">
-                            <tr v-for="user in users">
-                                <td class="px-2 py-2">{{ user.firstname }}</td>
-                                <td class="px-2 py-2">{{ user.email }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="bg-slate-100 my-4 w-96 border-black border-2 rounded-md">
-                    <h3 class="-center font-semibold text-xl px-2 py-2 text-left">Jobs</h3>
-                    <table class="bg-slate-100 divide-black divide--2 divide-y-2 w-full">
-                        <thead class="bg-white-100 w-full">
-                            <tr class="text-left px-2 py-2">
-                                <th class="px-2 py-2">Title</th>
-                                <th class="px-2 py-2">Date Added</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-sm divide-y divide-black">
-                            <tr v-for="job in jobs">
-                                <td class="px-2 py-2">{{ job.title }}</td>
-                                <td class="px-2 py-2">{{ job.created_at }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="bg-slate-100 my-4 w-96 border-black border-2 rounded-md">
-                    <h3 class="-center font-semibold text-xl px-2 py-2 text-left">Applications</h3>
-                    <table class="bg-slate-100 divide-black divide--2 divide-y-2 w-full">
-                        <thead class="bg-white-100 w-full">
-                            <tr class="text-left px-2 py-2">
-                                <th class="px-2 py-2">Applicant/Job</th>
-                                <th class="px-2 py-2">Application Date</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-sm divide-y divide-black">
-                            <!-- <Link> -->
-                            <tr v-for="application in applications">
-                                <td class="px-2 py-2">
-                                    {{ application.seeker.user.firstname }}/{{
-                                        application.job.title
-                                    }}
+                        <tbody class="text-sm">
+                            <tr v-for="user in users" class="odd:bg-gray-200">
+                                <td class="px-3 py-2 text-[14px] font-bold">{{ user.id }}</td>
+                                <td class="px-2 py-2 text-[12px] max-w-[150px] truncate">
+                                    {{ user.firstname }} {{ user.lastname }}
                                 </td>
-                                <td class="px-2 py-2">{{ application.created_at }}</td>
+                                <td class="px-2 py-2 text-[12px] max-w-[150px] truncate">
+                                    {{ user.email }}
+                                </td>
                             </tr>
-                            <!-- </Link> -->
                         </tbody>
                     </table>
                 </div>
-                <div class="bg-slate-100 my-4 w-96 border-black border-2 rounded-md">
-                    <h3 class="-center font-semibold text-xl px-2 py-2 text-left">Seekers</h3>
-                    <table class="bg-slate-100 divide-black divide--2 divide-y-2 w-full">
+                <div class="my-4 w-[340px]">
+                    <h3 class="text-center font-semibold text-xl py-2">Jobs</h3>
+                    <table
+                        class="bg-gray-100 my-2 border-inherit shadow-2xl border-2 rounded-md hover:translate-y-2 overflow-auto"
+                    >
                         <thead class="bg-white-100 w-full">
                             <tr class="text-left px-2 py-2">
-                                <th class="px-2 py-2">Title</th>
-                                <th class="px-2 py-2">Date Added</th>
+                                <th class="px-3 py-2 text-[14px]">ID</th>
+                                <th class="px-2 py-2 text-[14px]">Title</th>
+                                <th class="px-2 py-2 text-[14px]">Date created</th>
                             </tr>
                         </thead>
                         <tbody class="text-sm divide-y divide-black">
-                            <tr v-for="seeker in seekers">
-                                <td class="px-2 py-2">{{ seeker.user.username }}</td>
-                                <td class="px-2 py-2">{{ seeker.user.email }}</td>
+                            <tr v-for="job in jobs" class="odd:bg-gray-200">
+                                <td class="px-3 py-2 text-[14px] font-bold">{{ job.id }}</td>
+                                <td class="px-2 py-2 text-[12px] max-w-[150px] truncate">
+                                    {{ job.title }}
+                                </td>
+                                <td class="px-2 py-2 text-[12px] max-w-[150px] truncate">
+                                    {{ job.created_at }}
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <div class="bg-slate-100 my-4 w-96 border-black border-2 rounded-md">
-                    <h3 class="-center font-semibold text-xl px-2 py-2 text-left">Employers</h3>
-                    <table class="bg-slate-100 divide-black divide--2 divide-y-2 w-full">
+                <div class="my-4 w-[340px]">
+                    <h3 class="text-center font-semibold text-xl py-2">Applications</h3>
+                    <table
+                        class="bg-gray-100 my-2 w-[340px] border-inherit shadow-2xl border-2 rounded-md hover:translate-y-2 overflow-auto"
+                    >
                         <thead class="bg-white-100 w-full">
                             <tr class="text-left px-2 py-2">
-                                <th class="px-2 py-2">Title</th>
-                                <th class="px-2 py-2">Date Added</th>
+                                <th class="px-3 py-2 text-[14px]">ID</th>
+                                <th class="px-2 py-2 text-[14px]">Applicant/Job</th>
+                                <th class="px-2 py-2 text-[14px]">Date Applied</th>
                             </tr>
                         </thead>
                         <tbody class="text-sm divide-y divide-black">
-                            <tr v-for="employer in employers">
-                                <td class="px-2 py-2">{{ employer.user.username }}</td>
-                                <td class="px-2 py-2">{{ employer.user.email }}</td>
+                            <tr v-for="app in applications" class="odd:bg-gray-200">
+                                <td class="px-3 py-2 text-[14px] font-bold">{{ app.id }}</td>
+                                <td class="px-2 py-2 text-[12px] max-w-[150px] truncate">
+                                    {{ app.seeker.user.firstname }}/
+                                    {{ app.job.title }}
+                                </td>
+                                <td class="px-2 py-2 text-[12px] max-w-[150px] truncate">
+                                    {{ app.created_at }}
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <div class="bg-slate-100 my-4 w-96 h-72">Recent Activities</div>
+                <div class="my-4 w-[340px]">
+                    <h3 class="text-center font-semibold text-xl py-2">Seekers</h3>
+                    <table
+                        class="bg-gray-100 my-2 border-inherit shadow-2xl border-2 rounded-md hover:translate-y-2 overflow-auto"
+                    >
+                        <thead class="bg-white-100 w-full">
+                            <tr class="text-left px-2 py-2">
+                                <th class="px-3 py-2 text-[14px]">ID</th>
+                                <th class="px-2 py-2 text-[14px]">Name</th>
+                                <th class="px-2 py-2 text-[14px]">Email</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm divide-y divide-black">
+                            <tr v-for="seeker in seekers" class="odd:bg-gray-200">
+                                <td class="px-3 py-2 text-[14px] font-bold">{{ seeker.id }}</td>
+                                <td class="px-2 py-2 text-[12px] max-w-[150px] truncate">
+                                    {{ seeker.user.firstname }} {{ seeker.user.lastname }}
+                                </td>
+                                <td class="px-2 py-2 text-[12px] max-w-[150px] truncate">
+                                    {{ seeker.user.email }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="my-4 w-[340px]">
+                    <h3 class="text-center font-semibold text-xl py-2">Employers</h3>
+                    <table
+                        class="bg-gray-100 my-2 border-inherit shadow-2xl border-2 rounded-md hover:translate-y-2 overflow-auto"
+                    >
+                        <thead class="bg-white-100 w-full">
+                            <tr class="text-left px-2 py-2">
+                                <th class="px-3 py-2 text-[14px]">ID</th>
+                                <th class="px-2 py-2 text-[14px]">Name</th>
+                                <th class="px-2 py-2 text-[14px]">Email</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm divide-y divide-black">
+                            <tr v-for="employer in employers" class="odd:bg-gray-200">
+                                <td class="px-3 py-2 text-[14px] font-bold">{{ employer.id }}</td>
+                                <td class="px-2 py-2 text-[12px] max-w-[150px] truncate">
+                                    {{ employer.user.firstname }} {{ employer.user.lastname }}
+                                </td>
+                                <td class="px-2 py-2 text-[12px] max-w-[150px] truncate">
+                                    {{ employer.user.email }}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="my-4 w-[340px]">
+                    <h3 class="text-center font-semibold text-xl py-2">Recent Activities</h3>
+                    <table
+                        class="bg-gray-100 my-2 border-inherit shadow-2xl border-2 rounded-md hover:translate-y-2 overflow-auto"
+                    >
+                        <thead class="bg-white-100 w-full">
+                            <tr class="text-left px-2 py-2">
+                                <!-- <th class="px-3 py-2 text-[14px]">ID</th> -->
+                                <!-- <th class="px-2 py-2 text-[14px]">Name</th> -->
+                                <!-- <th class="px-2 py-2 text-[14px]">Email</th> -->
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm divide-y divide-black">
+                            <!-- <tr v-for="employer in employers" class="odd:bg-gray-200"> -->
+                            <!-- <td class="px-3 py-2 text-[14px] font-bold">{{ employer.id }}</td> -->
+                            <!-- <td class="px-2 py-2 text-[12px]"> -->
+                            <!-- {{ employer.user.firstname }} {{ employer.user.lastname }} -->
+                            <!-- </td> -->
+                            <!-- <td class="px-2 py-2 text-[12px]">{{ employer.user.email }}</td> -->
+                            <!-- </tr> -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </AdminLayout>

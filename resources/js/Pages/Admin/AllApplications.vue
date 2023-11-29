@@ -8,38 +8,49 @@ const { applications } = defineProps({
 </script>
 <template>
     <AdminLayout>
-        <div class="w-full rounded-2xl py-4 m-auto bg-gray-100">
-            <div class="mb-8 mt-4 m-auto w-[99%] px-4 py-4 bg-white rounded-lg">
-                <h1 class="text-xl text-left font-semibold py-4">All Applications</h1>
+        <div class="w-full rounded-2xl py-1 m-auto bg-gray-100">
+            <div class="mb-2 mt-1 m-auto w-full px-2 py-2 bg-white rounded-md">
+                <h1 class="text-2xl tracking-wide text-center font-semibold py-4">
+                    All Applications
+                </h1>
             </div>
-            <div class="py-4 px-2 w-full min-h-screen m-auto bg-white rounded-lg">
+            <div class="py-1 w-full min-h-screen m-auto rounded-lg overflow-auto">
                 <table class="min-w-full divide-y divide-gray-500 divide-solid rounded-lg">
-                    <thead class="bg-gray-200 text-left rounded-lg">
+                    <thead class="bg-gray-200 text-left rounded-lg text-[13px]">
                         <tr>
-                            <th class="px-4 py-3">Name</th>
-                            <th class="px-4 py-3">Job</th>
-                            <th class="px-2 py-3">Status</th>
-                            <th class="px-4 py-3">Date Applied</th>
+                            <th class="px-1 py-2 text-blue-800 text-center">ID</th>
+                            <th class="px-2 py-2">Name</th>
+                            <th class="px-2 py-2">Job</th>
+                            <th class="px-2 py-2">Status</th>
+                            <th class="px-2 py-2">Date Applied</th>
                         </tr>
                     </thead>
                     <tbody class="bg-gray-100 divide-solid rounded-lg">
-                        <tr v-for="application in applications">
+                        <tr
+                            v-for="application in applications"
+                            class="odd:bg-gray-200 text-[12px] rounded-md"
+                        >
                             <!-- <Link :href="route('admin.applications.one', application.id)"> -->
-                            <td class="px-2 py-3 whitespace-nowrap text-sm leading-5">
+                            <td class="px-1 py-2 text-center text-blue-800 font-bold leading-5">
+                                {{ application.id }}
+                            </td>
+
+                            <td class="px-2 py-2 min-w-[100px] max-w-[180px] leading-5">
                                 <Link :href="route('admin.applications.one', application.id)">
                                     {{ application.seeker.user.firstname }}
+                                    {{ application.seeker.user.lastname }}
                                 </Link>
                             </td>
 
-                            <td class="px-2 py-3 whitespace-nowrap text-sm leading-5">
+                            <td class="px-2 py-2 min-w-[100px] max-w-[180px] leading-5">
                                 {{ application.job.title }}
                             </td>
 
-                            <td class="px-2 py-3 whitespace-nowrap text-sm leading-5">
+                            <td class="px-2 py-2 min-w-[80px] max-w-[180px] leading-5">
                                 {{ application.status }}
                             </td>
 
-                            <td class="px-2 py-3 whitespace-nowrap text-sm leading-5">
+                            <td class="px-2 py-2 min-w-[100px] max-w-[180px] leading-5">
                                 {{ application.created_at }}
                             </td>
                             <!-- </Link> -->

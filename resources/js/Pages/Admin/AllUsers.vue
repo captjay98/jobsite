@@ -8,46 +8,64 @@ const { users } = defineProps({
 </script>
 <template>
     <AdminLayout>
-        <div class="w-full rounded-2xl py-4 m-auto bg-gray-100">
-            <div class="mb-8 mt-4 m-auto w-[99%] px-4 py-4 bg-white rounded-lg">
-                <h1 class="text-xl text-left font-semibold py-4">All users</h1>
+        <div class="w-full rounded-md py-1 m-auto bg-gray-100">
+            <div class="mb-2 mt-1 m-auto w-full px-2 py-2 bg-white rounded-md">
+                <h1 class="text-2xl tracking-wide text-center font-semibold py-4">All users</h1>
             </div>
-            <div class="py-4 px-2 w-full min-h-screen m-auto bg-white rounded-lg">
-                <table class="min-w-full divide-y divide-gray-500 divide-solid rounded-lg">
-                    <thead class="bg-gray-200 text-left rounded-lg">
-                        <tr>
-                            <th class="px-4 py-3">First Name</th>
-                            <th class="px-4 py-3">Last Name</th>
-                            <th class="px-2 py-3">User Name</th>
-                            <th class="px-2 py-3">Email</th>
-                            <th class="px-4 py-3">Account Type</th>
-                            <th class="px-4 py-3">Date Joined</th>
+            <div class="py-1 w-full min-h-screen m-auto rounded-lg overflow-auto">
+                <table class="min-w-full divide-y divide-gray-500 divide-solid rounded-md">
+                    <thead class="bg-gray-200 text-left text-[13px] rounded-lg">
+                        <tr class="text-left border-inherit">
+                            <th class="px-2 py-2 text-center text-blue-800">ID</th>
+                            <th class="px-2 py-2">First Name</th>
+                            <th class="px-2 py-2">Last Name</th>
+                            <th class="px-2 py-2">User Name</th>
+                            <th class="px-2 py-2">Email</th>
+                            <th class="px-2 py-2 whitespace-nowrap">Account Type</th>
+                            <th class="px-2 py-2">Is SuperUser</th>
+                            <th class="px-2 py-2">Is Admin</th>
+                            <th class="px-2 py-2">Is Active</th>
+                            <th class="px-2 py-2">Date Joined</th>
                         </tr>
                     </thead>
                     <tbody class="bg-gray-100 divide-solid rounded-lg">
-                        <tr v-for="user in users">
-                            <td class="px-2 py-3 whitespace-nowrap text-sm leading-5">
+                        <tr v-for="user in users" class="text-[12px] odd:bg-gray-200 rounded-md">
+                            <td class="px-2 py-2 font-bold text-blue-800 text-center">
+                                {{ user.id }}
+                            </td>
+
+                            <td class="px-2 py-2 min-w-[100px] max-w-[180px] leading-5">
                                 <Link :href="route('admin.users.one', user.id)">
                                     {{ user.firstname }}
                                 </Link>
                             </td>
 
-                            <td class="px-2 py-3 whitespace-nowrap text-sm leading-5">
+                            <td class="px-2 py-2 min-w-[100px] max-w-[180px] leading-5">
                                 {{ user.lastname }}
                             </td>
 
-                            <td class="px-2 py-3 whitespace-nowrap text-sm leading-5">
+                            <td class="px-2 py-2 min-w-[100px] max-w-[180px] leading-5">
                                 {{ user.username }}
                             </td>
 
-                            <td class="px-2 py-3 whitespace-nowrap text-sm leading-5">
+                            <td
+                                class="px-2 py-2 min-w-[100px] max-w-[180px] -auto overflow-hidden leading-5"
+                            >
                                 {{ user.email }}
                             </td>
-                            <td class="px-2 py-3 whitespace-nowrap text-sm leading-5">
-                                {{ user.accounttype }}
+                            <td class="px-2 py-2 min-w-[100px] max-w-[180px] leading-5">
+                                {{ user.account_type }}
                             </td>
-
-                            <td class="px-2 py-3 whitespace-nowrap text-sm leading-5">
+                            <td class="px-2 py-2 min-w-[100px] max-w-[180px] leading-5">
+                                {{ user.is_admin }}
+                            </td>
+                            <td class="px-2 py-2 min-w-[100px] max-w-[180px] leading-5">
+                                {{ user.is_superuser }}
+                            </td>
+                            <td class="px-2 py-2 min-w-[100px] max-w-[180px] leading-5">
+                                {{ user.is_active }}
+                            </td>
+                            <td class="px-2 py-2 min-w-[100px] max-w-[180px] leading-5">
                                 {{ user.created_at }}
                             </td>
                         </tr>
