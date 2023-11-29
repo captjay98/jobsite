@@ -30,7 +30,7 @@ class CreateAdmin extends Command
         $lastname = $this->ask('Enter Last Name');
         $email = $this->ask('Enter Email');
         $username = $this->ask('Enter Username');
-        $password = $this->secret('Enter Paaword');
+        $password = $this->secret('Enter Password');
         $repassword = $this->secret('Re-Enter Password');
 
         if ($password !== $repassword) {
@@ -45,8 +45,10 @@ class CreateAdmin extends Command
             'email' => $email,
             'username' => $username,
             'password' => bcrypt($password),
-            // 'is_admin' => 1,
-            'accounttype' => 'admin',
+            'account_type' => 'admin',
+            'is_superuser' => true,
+            'is_admin' => true,
+            'is_active' => true,
         ]);
 
         $this->info("Admin $firstname $lastname Created");
