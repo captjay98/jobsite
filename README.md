@@ -1,66 +1,138 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<p align="left">
+    <img height= "300px" src="https://i.imgur.com/ZvHWrFn.png">
+<p/>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+ A Job Platform
 
-## About Laravel
+## Table of Content
+* [Overview](#overview)
+* [Technologies Used](#technologies-used)
+* [Features](#features)
+* [How to Contribute](#how-to-contribute)
+* [Setup and Installation](#setup-and-installation)
+* [Contributors](#contributors)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Overview
+__About Us__
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Jobsite, is a platform where employers can post Jobs and Seekers can Apply for Jobs in an Easy and Efficient Manner.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+__Live Link__: (https://jobsite-dev-dhjq.3.us-1.fl0.io)
 
-## Learning Laravel
+__Project Status__: _in progress_
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Technologies Used
+  - __Frontend__ <br/>
+    <img height=50 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg"/>
+    <img height=50 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg"/>
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+  - __Backend__ <br/>
+    <img height=50 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-plain.svg"/>
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+  - __Database__ <br/>
+    <img height=50 src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-plain.svg" />
+  
+  - __Project Mnagement__ <br/>
+    ![github-#121011](https://user-images.githubusercontent.com/72948572/183911700-45ab5ec7-8f95-41ce-8d0e-616ddca2827f.svg)
 
-## Laravel Sponsors
+## Features
+  `Create Account` Users can Sign up as Employer or Seeker.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+  
+  `Profile Management` Seekers can populate and update their profile details, Employers can do same.
 
-### Premium Partners
+  
+  `Admin` Full Featured Admin Interface with control over the entire Application.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+  
+  `Employers` Employers can post Jobs and update Job Status and Application Status.
 
-## Contributing
+  
+  `Seekers` Seekers can view Jobs and Apply for Jobs.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+  
+  `Recommendations` Seekers get Job Recommendations based on their Profiles, Employers get Seeker recommendations based on matching criterias.
 
-## Code of Conduct
+  
+  `Responsive` Enables users to access the platform via their various devices without any issues with their display.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+  
+  `Theres alot more I'll let you explore`
+  
+## How to Contribute 
+- __Fork the project repository__<br/>
+In the project repository on github click the fork button in the upper right corner
 
-## Security Vulnerabilities
+- __Clone the forked repository to your local machine__
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    ```ruby
+    git clone https://github.com/captjay98/jobsite.git
+    ```
+- __Navigate to the local directory and open in your IDE/ Text Editor__
 
-## License
+- __In the IDE terminal set upstream branch__
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    ```ruby
+    git remote add upstream https://github.com/captjay98/jobsite.git
+    ```
+- __Pull upstream__
+
+    ```ruby
+    git pull upstream main
+    ```
+    
+- __Create a new branch to make your changes__
+
+    ```ruby
+    git checkout -b <your_branch_name>
+    ```
+    
+- __Stage the file__
+After making edits, type the below command in your terminal
+
+    ```ruby
+    git add <changed_files>
+    ```
+- __Commit changes__
+
+    ```ruby
+    git commit -m "your_message"
+    ```
+- __Push your local changes__
+
+    ```ruby
+    git push origin <your_branch_name>
+    ```
+    
+- __Create a pull request__
+
+- __Wait till the admin accepts and merges your pull request__
+
+## Setup and Installation 
+  __In your IDE run the following commands in the terminal to setup__
+
+- Run composer install in root directory
+
+    ``` ruby
+    composer Install
+    ``` 
+- Run npm install
+
+    ``` ruby
+    npm install
+    ``` 
+- Run npm run build
+    ``` ruby
+    npm run build
+    ```
+- Run Server
+
+    ``` ruby
+    php artisan serve
+    ```
+
+## Contributors
+
+|__Name__|
+
+[Jamal Umar Ibrahim](https://github.com/captjay98)
