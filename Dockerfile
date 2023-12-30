@@ -28,7 +28,7 @@ COPY 000-default.conf /etc/apache2/sites-enabled/000-default.conf
 EXPOSE 8080
 RUN  a2enmod rewrite
 
-RUN service apache2 restart
+# RUN service apache2 restart
 
 CMD ["apache2ctl", "-D", "FOREGROUND"]
 
