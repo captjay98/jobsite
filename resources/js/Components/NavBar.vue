@@ -22,7 +22,7 @@ const drop = ref(false);
 </script>
 
 <template>
-    <nav class="hidden md:flex space-x-5">
+    <nav class="hidden space-x-5 md:flex">
         <ul v-for="link in links" class="flex space-x-5">
             <li
                 :class="{
@@ -46,25 +46,28 @@ const drop = ref(false);
             </li>
         </ul>
     </nav>
-    <div class="md:hidden flex space-x-5">
+    <div class="flex space-x-5 md:hidden">
         <button class="absolute right-10" @click="drop = !drop">
             <img
-                class="h-8 w-8 py-1 px-1"
+                class="py-1 px-1 w-8 h-8"
                 :src="'/storage/icons/hamburger.png'"
                 alt="Profile Avatar"
             />
         </button>
 
-        <nav v-show="drop" class="transition ease-in">
+        <nav
+            v-show="drop"
+            class="transition duration-300 ease-in-out animate-pulse repeat-2"
+        >
             <div
-                class="text-white tracking-wider transition ease-in duration-200 bg-blue-500 absolute top-20 right-5 px-4 py-4 rounded-md"
+                class="absolute right-5 top-20 py-4 px-4 tracking-wider text-white bg-blue-500 rounded-md transition duration-300 ease-in"
             >
-                <ul v-for="link in links" class="px-2 py-2 text-left">
+                <ul v-for="link in links" class="py-2 px-2 text-left">
                     <li>
                         <Link :href="link.path">{{ link.name }}</Link>
                     </li>
                 </ul>
-                <ul class="px-2 py-2 text-left">
+                <ul class="py-2 px-2 text-left">
                     <li v-show="showLink(seeker)">
                         <Link href="/seeker">SDashboard</Link>
                     </li>

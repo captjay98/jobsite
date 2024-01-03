@@ -54,16 +54,22 @@ const Search = () => {
 </script>
 
 <template>
-    <div class="flex justify-center items-center w-full h-auto py-2 m-auto my-2 rounded-md">
-        <form class="flex flex-wrap justify-center mt-4 rounded-md" @submit.prevent="Search">
+    <div
+        class="flex justify-center items-center m-auto my-2 w-full h-auto rounded-md 2"
+    >
+        <form
+            class="flex flex-wrap justify-center mt-4 rounded-md"
+            @submit.prevent="Search"
+        >
             <select
-                class="w-40 bg-blue-100 h-10 rounded-sm text-sm text-center focus:outline-slate-100 focus:ring-slate-100 border-none"
+                class="w-40 h-10 text-sm text-center bg-blue-100 rounded-l-md border-none focus:outline-slate-100 focus:ring-slate-100"
                 name="industry"
                 id="industry"
                 v-model="form.industry"
             >
+                <option value="" disabled>Industry</option>
                 <option
-                    class="px-1 py-2"
+                    class="py-2 px-1"
                     v-for="industry in industries"
                     :key="industry"
                     :value="industry"
@@ -73,13 +79,14 @@ const Search = () => {
             </select>
 
             <select
-                class="w-40 bg-blue-100 h-10 rounded-sm text-sm text-center focus:outline-slate-100 focus:ring-slate-100 border-none"
+                class="w-40 h-10 text-sm text-center bg-blue-100 rounded-sm border-none focus:outline-slate-100 focus:ring-slate-100"
                 name="profession"
                 id="profession"
                 v-model="form.profession"
             >
+                <option value="" disabled>Profession</option>
                 <option
-                    class="px-1 py-2"
+                    class="py-2 px-1"
                     v-for="profession in professions"
                     :key="profession"
                     :value="profession"
@@ -88,25 +95,31 @@ const Search = () => {
                 </option>
             </select>
             <select
-                class="w-40 bg-blue-100 h-10 rounded-sm text-sm text-center focus:outline-slate-100 focus:ring-slate-100 border-none"
+                class="w-40 h-10 text-sm text-center bg-blue-100 rounded-r-md border-none focus:outline-slate-100 focus:ring-slate-100"
                 name="salary"
                 id="salary"
                 v-model="form.salary"
             >
-                <option class="px-1 py-2" v-for="salary in salaries" :key="salary" :value="salary">
+                <option value="" disabled>Salary</option>
+                <option
+                    class="py-2 px-1"
+                    v-for="salary in salaries"
+                    :key="salary"
+                    :value="salary"
+                >
                     {{ salary }}
                 </option>
             </select>
 
             <!-- <input -->
-            <!--     class="w-40 bg-blue-100 h-10 rounded-sm text-sm text-center focus:outline-slate-100 focus:ring-slate-100 border-none" -->
+            <!--     class="w-40 h-10 text-sm text-center bg-blue-100 rounded-sm border-none focus:outline-slate-100 focus:ring-slate-100" -->
             <!--     type="text" -->
             <!--     v-model="form.location" -->
             <!--     id="location" -->
             <!--     placeholder="Location" -->
             <!-- /> -->
             <button
-                class="w-40 bg-blue-500 px-3 py-1 rounded-sm text-slate-200 hover:bg-blue-700 active:bg-blue-900"
+                class="py-1 px-3 w-40 bg-blue-500 rounded-md hover:bg-blue-700 active:bg-blue-900 text-slate-200"
                 bg-blue-500
             >
                 Search
