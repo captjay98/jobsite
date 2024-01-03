@@ -17,7 +17,7 @@ __About Us__
 
 Jobsite, is a platform where employers can post Jobs and Seekers can Apply for Jobs in an Easy and Efficient Manner.
 
-__Live Link__: (https://jobsite-dev-dhjq.3.us-1.fl0.io)
+__Live Link__: https://jobsite-dev.1.us-1.fl0.io
 
 __Project Status__: _in progress_
 
