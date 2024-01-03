@@ -43,27 +43,25 @@ const links = [
     <PageHeader :links="links" />
     <div class="mt-12 w-screen h-auto bg-blue-100">
         <div class="bg-slate-100 min-h-auto">
-            <div
-                class="flex flex-wrap justify-between lg:py-20 lg:mt-20 max-sm:mt-24"
-            >
+            <div class="flex flex-wrap justify-between md:py-20 md:mt-20">
                 <div
-                    class="max-sm:px-2 max-sm:pt-20 lg:w-[40%] m-auto w-full py-4 max-sm:mb-10"
+                    class="max-sm:px-2 max-sm:pt-20 lg:w-[90%] xl:w-[40%] mb-[4.5rem] m-auto w-full py-4 max-sm:mb-10"
                 >
                     <div class="px-2">
                         <h1
-                            class="tracking-tight leading-tight text-center text-[3.3rem] max-sm:text-3xl"
+                            class="tracking-tight leading-tight text-center text-[3.3rem] max-sm:text-[2.6rem]"
                         >
                             Welcome to
                             <span class="text-blue-500">JobSite</span>
                         </h1>
                         <h2
-                            class="text-3xl tracking-tight leading-tight text-center max-sm:text-xl"
+                            class="text-3xl tracking-tight leading-tight text-center max-sm:text-[1.45rem]"
                         >
                             The ultimate hub where talents and opportunities
                             converge.
                         </h2>
                         <p
-                            class="my-2 leading-5 text-center text-md max-sm:text-[14px] md:px-[2.2rem]"
+                            class="my-2 leading-5 text-center text-md max-sm:px-5 max-sm:text-[0.9rem] md:px-[2.2rem]"
                         >
                             Whether you're a job seeker eager to find your
                             perfect role or an employer searching for top-tier
@@ -78,7 +76,7 @@ const links = [
                     </div>
                 </div>
                 <div
-                    class="lg:w-[55%] lg:mb-20 md:px-8 w-full max-sm:pt-0 px-2 py-2 flex justify-center items-center"
+                    class="xl:w-[50%] xl:mb-20 l:mb-20 md:px-8 w-full max-sm:pt-0 px-2 py-2 flex justify-center items-center"
                 >
                     <img
                         class="w-full h-full bg-white rounded-lg"
@@ -102,7 +100,7 @@ const links = [
                     <h2 class="text-4xl">
                         Explore a myriad of openings tailored to your skills
                     </h2>
-                    <p class="text-md">
+                    <p class="mt-2 text-md">
                         Choose a Job That Perfectly Fits Your Criteria
                     </p>
 
@@ -123,7 +121,7 @@ const links = [
                     <h2 class="text-4xl">
                         Get Applications From the Right Talents
                     </h2>
-                    <p class="text-md">
+                    <p class="mt-2 text-md">
                         Gain access to a pool of qualified candidates.
                     </p>
 
@@ -230,48 +228,50 @@ const links = [
     </div>
     <div class="py-8 px-2 h-auto min-h-screen bg-slate-100">
         <div class="flex flex-wrap justify-center">
-            <div class="flex flex-wrap justify-center my-16">
-                <div class="my-4 mx-4 w-56 h-56">
+            <div
+                class="grid grid-cols-2 justify-center m-auto my-16 md:grid-cols-4"
+            >
+                <div class="my-4 h-56 max-w-[15rem]">
                     <div class="flex flex-wrap py-4 px-6 justify center">
                         <p class="mt-2 w-full text-5xl text-center">5K+</p>
                         <p class="mt-4 w-full font-semibold text-center">
                             Successful Applicants
                         </p>
                         <p class="mt-4 w-full text-center">
-                            Over Five Thousand Succesful Applicants and Counting
+                            Over Five Thousand Succesful Applicants .
                         </p>
                     </div>
                 </div>
-                <div class="my-4 mx-4 w-56 h-56">
+                <div class="my-4 h-56 max-w-[15rem]">
                     <div class="flex flex-wrap py-4 px-6 justify center">
                         <p class="mt-2 w-full text-5xl text-center">2K+</p>
                         <p class="mt-4 w-full font-semibold text-center">
-                            Employers
+                            Employers Onboard
                         </p>
                         <p class="mt-4 w-full text-center">
                             Over Two Thousand Employers Currently.
                         </p>
                     </div>
                 </div>
-                <div class="my-4 mx-4 w-56 h-56">
+                <div class="my-4 h-56 max-w-[15rem]">
                     <div class="flex flex-wrap py-4 px-6 justify center">
                         <p class="mt-2 w-full text-5xl text-center">12K+</p>
                         <p class="mt-4 w-full font-semibold text-center">
                             Jobs Posted.
                         </p>
                         <p class="mt-4 w-full text-center">
-                            More than Twelve Thousand Jobs Posted So Far.
+                            More than Twelve Thousand Jobs Posted .
                         </p>
                     </div>
                 </div>
-                <div class="my-4 mx-4 w-56 h-56">
+                <div class="my-4 h-56 max-w-[15rem]">
                     <div class="flex flex-wrap py-4 px-6 justify center">
                         <p class="mt-2 w-full text-5xl text-center">129</p>
                         <p class="mt-4 w-full font-semibold text-center">
                             Committed Staff
                         </p>
                         <p class="mt-4 w-full text-center">
-                            One Hundred and Nineteen Committed Staff.
+                            One Hundred and Twenty Nine Staff.
                         </p>
                     </div>
                 </div>

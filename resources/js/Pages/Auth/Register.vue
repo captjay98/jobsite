@@ -23,46 +23,54 @@ const submit = () => {
     <GuestLayout>
         <Head title="Register" />
         <div class="w-96 h-[90%] rounded-md">
-            <div class="bg- rounded-md h-16 pt-3 mb-1">
-                <p class="text-lg my-2 font-semibold text-center text-blue-600">
+            <div class="pt-3 mb-1 h-16 rounded-md bg-">
+                <p class="my-2 text-lg font-semibold text-center text-blue-600">
                     Create a Free Account
                 </p>
             </div>
 
-            <div class="w-full rounded-md py-2 mb-4">
+            <div class="py-2 mb-4 w-full rounded-md">
                 <form
                     @submit.prevent="submit"
                     class="m-auto rounded-md w-[90%] h-[80%] my-2 px-4 pt-4 pb-6"
                 >
-                    <div class="text-center m-auto pt-2">
+                    <div class="pt-2 m-auto text-center">
                         <div>
-                            <div class="text-black mb-4 ml-3 flex justify-between">
+                            <div
+                                class="flex justify-between mb-4 ml-3 text-black"
+                            >
                                 <div
-                                    class="py-2 border-2 border-blue-500 text-sm w-32 h-10 rounded-md"
-                                    :class="{ 'bg-blue-500': form.account_type === 'seeker' }"
+                                    class="py-2 w-32 h-10 text-sm rounded-md border-2 border-blue-500"
+                                    :class="{
+                                        'bg-blue-500':
+                                            form.account_type === 'seeker',
+                                    }"
                                     @click="form.account_type = 'seeker'"
                                 >
-                                    <label for="seeker">Seeker</label>
+                                    Seeker
                                 </div>
 
                                 <div
-                                    class="py-2 border-2 border-blue-500 text-sm w-32 h-10 rounded-md"
+                                    class="py-2 w-32 h-10 text-sm rounded-md border-2 border-blue-500"
                                     :class="{
-                                        'bg-blue-500 shadow-2xl': form.account_type === 'employer',
+                                        'bg-blue-500 shadow-2xl':
+                                            form.account_type === 'employer',
                                     }"
                                     @click="form.account_type = 'employer'"
                                 >
-                                    <label for="employer">Employer</label>
+                                    Employer
                                 </div>
                             </div>
                         </div>
                         <div v-show="form.errors.account_type">
-                            <p class="text-sm text-red-500">{{ form.errors.account_type }}</p>
+                            <p class="text-sm text-red-500">
+                                {{ form.errors.account_type }}
+                            </p>
                         </div>
 
                         <div>
                             <input
-                                class="mx-2 border-slate-300 bg-slate-100 my-2 w-full h-9 rounded-md shadow-xl"
+                                class="my-2 mx-2 w-full h-9 rounded-md shadow-xl border-slate-300 bg-slate-100"
                                 type="text"
                                 id="firstname"
                                 placeholder="First Name"
@@ -70,12 +78,14 @@ const submit = () => {
                                 required
                             />
                             <div v-show="form.errors.firstname">
-                                <p class="text-sm text-red-500">{{ form.errors.firstname }}</p>
+                                <p class="text-sm text-red-500">
+                                    {{ form.errors.firstname }}
+                                </p>
                             </div>
                         </div>
                         <div>
                             <input
-                                class="mx-2 my-2 border-slate-300 bg-slate-100 w-full h-9 rounded-md shadow-xl"
+                                class="my-2 mx-2 w-full h-9 rounded-md shadow-xl border-slate-300 bg-slate-100"
                                 type="text"
                                 id="lastname"
                                 placeholder="Last Name"
@@ -83,38 +93,46 @@ const submit = () => {
                                 required
                             />
                             <div v-show="form.errors.lastname">
-                                <p class="text-sm text-red-500">{{ form.errors.lastname }}</p>
+                                <p class="text-sm text-red-500">
+                                    {{ form.errors.lastname }}
+                                </p>
                             </div>
                         </div>
                         <div>
                             <input
-                                class="mx-2 my-2 w-full border-slate-300 bg-slate-100 h-9 rounded-md shadow-xl"
+                                class="my-2 mx-2 w-full h-9 rounded-md shadow-xl border-slate-300 bg-slate-100"
                                 type="text"
                                 id="username"
                                 placeholder="Username"
                                 v-model="form.username"
                                 required
+                                autocomplete="username"
                             />
                             <div v-show="form.errors.username">
-                                <p class="text-sm text-red-500">{{ form.errors.username }}</p>
+                                <p class="text-sm text-red-500">
+                                    {{ form.errors.username }}
+                                </p>
                             </div>
                         </div>
                         <div>
                             <input
-                                class="mx-2 my-2 w-full border-slate-300 bg-slate-100 h-9 rounded-md shadow-xl"
+                                class="my-2 mx-2 w-full h-9 rounded-md shadow-xl border-slate-300 bg-slate-100"
                                 type="text"
                                 id="email"
                                 placeholder="Email"
                                 v-model="form.email"
                                 required
+                                autocomplete="email"
                             />
                             <div v-show="form.errors.email">
-                                <p class="text-sm text-red-500">{{ form.errors.email }}</p>
+                                <p class="text-sm text-red-500">
+                                    {{ form.errors.email }}
+                                </p>
                             </div>
                         </div>
                         <div>
                             <input
-                                class="mx-2 my-2 w-full border-slate-300 bg-slate-100 h-9 rounded-md shadow-xl"
+                                class="my-2 mx-2 w-full h-9 rounded-md shadow-xl border-slate-300 bg-slate-100"
                                 type="password"
                                 id="password"
                                 placeholder="Password"
@@ -122,14 +140,16 @@ const submit = () => {
                                 required
                             />
                             <div v-show="form.errors.password">
-                                <p class="text-sm text-red-500">{{ form.errors.password }}</p>
+                                <p class="text-sm text-red-500">
+                                    {{ form.errors.password }}
+                                </p>
                             </div>
                         </div>
                         <div>
                             <input
-                                class="mx-2 my-2 w-full border-slate-300 bg-slate-100 h-8 rounded-md shadow-xl"
+                                class="my-2 mx-2 w-full h-8 rounded-md shadow-xl border-slate-300 bg-slate-100"
                                 type="password"
-                                id="password"
+                                id="password_confirmation"
                                 placeholder="Confirm Password"
                                 v-model="form.password_confirmation"
                                 required
@@ -142,16 +162,17 @@ const submit = () => {
                         </div>
                         <div>
                             <button
-                                class="w-full bg-blue-500 mx-2 my-4 px-2 py-1 rounded-md text-white shadow-xl"
+                                class="py-1 px-2 my-4 mx-2 w-full text-white bg-blue-500 rounded-md shadow-xl"
                             >
                                 Register
                             </button>
                         </div>
-                        <Link :href="route('login')"
-                            ><p class="text-xs text-left px-4 pt-2">
-                                Already a Member? <span class="text-blue-500"> Sign in.</span>
-                            </p></Link
-                        >
+                        <Link :href="route('login')">
+                            <p class="px-4 pt-2 text-xs text-left">
+                                Already a Member?
+                                <span class="text-blue-500"> Sign in.</span>
+                            </p>
+                        </Link>
                     </div>
                 </form>
             </div>
