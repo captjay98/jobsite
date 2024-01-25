@@ -8,6 +8,7 @@ use Inertia\Inertia;
 use App\Models\Seeker;
 use App\Models\Application;
 use App\Models\Job;
+use App\Models\Qualification;
 
 class SeekerController extends Controller
 {
@@ -18,13 +19,13 @@ class SeekerController extends Controller
     {
         $id = Auth()->id();
         $seeker = Seeker::with('user')
-                        ->where('user_id', $id)
-                        ->first();
+            ->where('user_id', $id)
+            ->first();
         $applications = Application::with('seeker', 'seeker.user', 'job')
-                                    ->where("seeker_id", $seeker->id)
-                                    ->orderBy('updated_at', 'DESC')
-                                    ->take(5)
-                                    ->get();
+            ->where("seeker_id", $seeker->id)
+            ->orderBy('updated_at', 'DESC')
+            ->take(5)
+            ->get();
         $jobs = Job::where('title', $seeker->profession || 'industry', $seeker->industry)->take(10)->get();
         return Inertia::render(
             'Seeker/SDashboard',
@@ -48,7 +49,7 @@ class SeekerController extends Controller
         return Inertia::render(
             'Seeker/SProfile',
             [
-                'seeker' => $seeker,$qualifications,$experiences,
+                'seeker' => $seeker, $qualifications, $experiences,
                 // 'message' => 'Seeker Profile'
             ]
         );
@@ -91,7 +92,7 @@ class SeekerController extends Controller
         $experience = [];
 
         foreach ($request->only(
-            ['firstname','lastname','username', 'email']
+            ['firstname', 'lastname', 'username', 'email']
         ) as $key => $value) {
             if ($seeker->user->{$key} !== $value) {
                 $userFields[$key] = $value;
@@ -99,13 +100,13 @@ class SeekerController extends Controller
         }
 
         foreach ($validatedData as $key => $value) {
-            if($key === 'qualification') {
-                foreach($validatedData[$key] as $k => $v) {
+            if ($key === 'qualification') {
+                foreach ($validatedData[$key] as $k => $v) {
                     $qualification[$k] = $v;
                 }
             }
-            if($key === 'experience') {
-                foreach($validatedData[$key] as $k => $v) {
+            if ($key === 'experience') {
+                foreach ($validatedData[$key] as $k => $v) {
                     $experience[$k] = $v;
                 }
             }
@@ -131,40 +132,48 @@ class SeekerController extends Controller
         //     $seeker->save;
         // }
         if ($request->hasFile('cv')) {
-            $cv_path = $request->file('cv')->store("cvs/$user", 'public');
+            $cvFile = $request->file('cv');
+            $cvName = 'cv_' . $user . '.' . 'pdf';
+            $cv_path = $cvFile->storeAs("cvs/$user", $cvName, 'public');
             $seeker->cv = $cv_path;
             $seeker->save();
-            // dd($cv_path);
         }
+
         if ($request->hasFile('visa')) {
-            $visa_path = $request->file('visa')->store("visas/$user", 'public');
+            $visaFile = $request->file('visa');
+            $visaName = 'visa_' . $user . '.' . 'pdf';
+            $visa_path = $visaFile->storeAs("visas/$user", $visaName, 'public');
             $seeker->visa = $visa_path;
             $seeker->save();
-            // dd($visa_path);
         }
+
         if ($request->hasFile('passport')) {
-            $passport_path = $request->file('passport')->store("passports/$user", 'public');
+            $passportFile = $request->file('passport');
+            $passportName = 'passport_' . $user . '.' . 'pdf';
+            $passport_path = $passportFile->storeAs("passports/$user", $passportName, 'public');
             $seeker->passport = $passport_path;
             $seeker->save();
         }
+
         if ($request->hasFile('avatar')) {
-            $avatar_path = $request->file('avatar')->store("avatars/$user", 'public');
-            // dd($avatar_path);
+            $avatarFile = $request->file('avatar');
+            $avatarName = 'avatar_' . $user . '.' . $avatarFile->getClientOriginalExtension();
+            $avatar_path = $avatarFile->storeAs("avatars/$user", $avatarName, 'public');
             $seeker->user->avatar = $avatar_path;
             $seeker->user->save();
         }
         // dd($seeker->user);
         $qualifications = $seeker->qualifications;
         $experiences = $seeker->experiences;
-        return Inertia::render(
-            'Seeker/SProfile',
-            [
-                'seeker' => $seeker,$qualifications,$experiences,
-                'message' => ['detail'=>'Seeker Profile Updated']
-            ]
-        );
+        // return Inertia::render(
+        //     'Seeker/SProfile',
+        //     [
+        //         'seeker' => $seeker, $qualifications, $experiences,
+        //         'message' => ['detail' => 'Seeker Profile Updated']
+        //     ]
+        // );
 
-        // return redirect()->route('seeker.profile',)->with('message', 'Profile Updated Succesfully');
+        return redirect()->route('seeker.profile');
     }
 
 
