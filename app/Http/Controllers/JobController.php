@@ -10,20 +10,18 @@ use Inertia\Inertia;
 class JobController extends Controller
 {
     /**
-    * Public Route
-    */
+     * Public Route
+     */
     public function getAllJobs()
     {
         $jobs = Job::get();
         return Inertia::render('HomeJobsAll', ['jobs' => $jobs]);
-
     }
 
     public function getJob($job_id)
     {
         $job = Job::where('id', $job_id)->first();
         return Inertia::render('HomeJobsOne', ['job' => $job]);
-
     }
 
     public function searchJobs(Request $request)
@@ -41,32 +39,31 @@ class JobController extends Controller
         $salary = $validated_data['salary'];
 
         if ($profession && $location && $industry && $salary) {
-            $jobs = Job::where(['title' => $profession,
-                                'city' => $location,
-                                'industry' => $industry,
-                                'salary' => $salary])->get();
-
+            $jobs = Job::where([
+                'title' => $profession,
+                'city' => $location,
+                'industry' => $industry,
+                'salary' => $salary
+            ])->get();
         } elseif ($profession && $industry) {
-            $jobs = Job::where(['title' => $profession,
-                                'industry' => $industry])->get();
-
+            $jobs = Job::where([
+                'title' => $profession,
+                'industry' => $industry
+            ])->get();
         } elseif ($profession) {
 
             $jobs = Job::where('title', $profession)->get();
-
         } elseif ($industry) {
             $jobs = Job::where('title', $industry)->get();
-
         } elseif ($location) {
             $jobs = Job::where('city', $location)->get();
-
         } elseif ($salary) {
             $jobs = Job::where('salary', $salary)->get();
-
         } else {
             return Inertia::render('HomeJobs', [
                 'jobs' => Job::all(),
-                "message" => "Sorry, We couldn't find Jobs Matching Your Criteria."]);
+                "message" => "Sorry, We couldn't find Jobs Matching Your Criteria."
+            ]);
         }
         return Inertia::render('HomeJobsAll', ['jobs' => $jobs]);
     }
@@ -83,8 +80,8 @@ class JobController extends Controller
     {
         $id = auth()->id();
         $employer = Employer::with('user')
-                            ->where('user_id', $id)
-                            ->first();
+            ->where('user_id', $id)
+            ->first();
         $jobs = $employer->jobs;
 
         return Inertia::render('Employer/EJobs', ['jobs' => $jobs]);
@@ -92,8 +89,8 @@ class JobController extends Controller
     }
 
     /**
-        * Show one Job for Employer
-    */
+     * Show one Job for Employer
+     */
     public function employerShowOne(Job $job, $job_id)
     {
         $id = auth()->id();
@@ -124,6 +121,7 @@ class JobController extends Controller
         // dd($request->all());
         $validated_data = $request->validate([
             'title' => 'required',
+            'company' => 'required',
             'salary' => 'required',
             'industry' => 'required',
             'description' => 'required',
@@ -148,6 +146,7 @@ class JobController extends Controller
         $job = Job::where('id', $job_id->id)->first();
         $validated_data = $request->validate([
             'title' => 'sometimes',
+            'company' => 'sometimes',
             'salary' => 'sometimes',
             'industry' => 'sometimes',
             'description' => 'sometimes',
@@ -162,8 +161,8 @@ class JobController extends Controller
     }
 
     /**
-        * Show all Jobs for Seeker
-    */
+     * Show all Jobs for Seeker
+     */
 
     public function seekerShowAll()
     {
@@ -187,15 +186,19 @@ class JobController extends Controller
         $salary = $validated_data['salary'];
 
         if ($profession && $location && $industry && $salary) {
-            $jobs = Job::where(['title' => $profession,
-                                'city' => $location,
-                                'industry' => $industry,
-                                'salary' => $salary])->get();
+            $jobs = Job::where([
+                'title' => $profession,
+                'city' => $location,
+                'industry' => $industry,
+                'salary' => $salary
+            ])->get();
             // dd($jobs);
 
         } elseif ($profession && $industry) {
-            $jobs = Job::where(['title' => $profession,
-                                'industry' => $industry])->get();
+            $jobs = Job::where([
+                'title' => $profession,
+                'industry' => $industry
+            ])->get();
             // dd($jobs);
 
         } elseif ($profession) {
@@ -209,7 +212,6 @@ class JobController extends Controller
 
         } elseif ($location) {
             $jobs = Job::where('city', $location)->get();
-
         } elseif ($salary) {
             $jobs = Job::where('salary', $salary)->get();
 
@@ -218,7 +220,8 @@ class JobController extends Controller
         } else {
             return Inertia::render('Seeker/SJobs', [
                 'jobs' => Job::all(),
-                "message" => "Sorry, We couldn't find Jobs Matching Your Criteria."]);
+                "message" => "Sorry, We couldn't find Jobs Matching Your Criteria."
+            ]);
         }
         // $keyword = $validated_data['keyword'];
         // dd($jobs);

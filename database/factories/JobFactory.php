@@ -31,6 +31,21 @@ class JobFactory extends Factory
             "QA Engineer",
         ];
 
+        $jobCompanies = [
+            "Software",
+            "Developer",
+            "Front-end",
+            "Back-end",
+            "Full-stack",
+            "Mobile App",
+            "DevOps ",
+            "Software ",
+            "UI/UX",
+            "Engineer",
+            "Designer",
+            "QA",
+        ];
+
 
         $jobDescriptions = [
             "Design and develop software applications.",
@@ -77,6 +92,7 @@ class JobFactory extends Factory
         return [
             "employer_id" => Employer::inRandomOrder()->first()->id,
             'title' => $this->faker->randomElement($jobTitles),
+            'company' => $this->faker->randomElement($jobCompanies),
             'description' => $this->faker->randomElement($jobDescriptions),
             'industry' => $this->faker->randomElement($industries),
             'salary' => $this->faker->randomElement($salaryRanges),
