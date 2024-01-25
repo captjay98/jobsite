@@ -18,8 +18,6 @@
     "vue": "^3.2.41"
   },
   "dependencies": {
-    "@syncfusion/ej2-pdfviewer": "^23.1.43",
-    "vue-pdf-embed": "^1.2.1",
-    "vue3-pdf-app": "^1.0.3"
+
   }
 }
