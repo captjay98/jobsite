@@ -26,10 +26,8 @@ const { applications } = defineProps({
                         </tr>
                     </thead>
                     <tbody class="bg-gray-100 divide-solid rounded-lg">
-                        <tr
-                            v-for="application in applications"
-                            class="odd:bg-gray-200 text-[12px] rounded-md"
-                        >
+                        <tr v-if="applications" v-for="application in applications"
+                            class="odd:bg-gray-200 text-[12px] rounded-md">
                             <!-- <Link :href="route('admin.applications.one', application.id)"> -->
                             <td class="px-1 py-2 text-center text-blue-800 font-bold leading-5">
                                 {{ application.id }}
@@ -37,8 +35,8 @@ const { applications } = defineProps({
 
                             <td class="px-2 py-2 min-w-[100px] max-w-[180px] leading-5">
                                 <Link :href="route('admin.applications.one', application.id)">
-                                    {{ application.seeker.user.firstname }}
-                                    {{ application.seeker.user.lastname }}
+                                {{ application.seeker.user.firstname }}
+                                {{ application.seeker.user.lastname }}
                                 </Link>
                             </td>
 

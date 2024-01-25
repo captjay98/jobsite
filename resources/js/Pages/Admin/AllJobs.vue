@@ -19,6 +19,7 @@ const { jobs } = defineProps({
                             <th class="px-3 py-2 text-blue-800 text-center">ID</th>
                             <th class="px-2 py-2">Title</th>
                             <th class="px-2 py-2">Employer Name</th>
+                            <th class="px-2 py-2">Company</th>
                             <th class="px-2 py-2">Salary</th>
                             <th class="px-2 py-2">Industry</th>
                             <th class="px-2 py-2">Description</th>
@@ -35,12 +36,16 @@ const { jobs } = defineProps({
 
                             <td class="px-2 py-2 min-w-[100px] max-w-[180px] leading-5">
                                 <Link :href="route('admin.jobs.one', job.id)">
-                                    {{ job.title }}
+                                {{ job.title }}
                                 </Link>
                             </td>
 
                             <td class="px-2 py-2 min-w-[100px] max-w-[180px] leading-5">
                                 {{ job.employer.user.firstname }}
+                            </td>
+
+                            <td class="px-2 py-2 min-w-[100px] max-w-[180px] leading-5">
+                                {{ job.comapany }}
                             </td>
 
                             <td class="px-2 py-2 min-w-[100px] max-w-[180px] leading-5">

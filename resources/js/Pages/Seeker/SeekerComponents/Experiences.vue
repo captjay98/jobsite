@@ -2,6 +2,9 @@
 import Button from "@/Components/Button.vue";
 import { useForm } from "@inertiajs/vue3";
 import { computed } from "vue";
+import { useToast } from "vue-toastification";
+
+const toast = useToast()
 
 const { experiences } = defineProps({
     experiences: Object,
@@ -9,134 +12,115 @@ const { experiences } = defineProps({
 
 const form = useForm({
     experience: {
-        title: "",
-        place: "",
         from: "",
         to: "",
+        title: "",
+        place: "",
     },
 });
 
-const updatedFields = computed(() => {
-    const updatedFields = {};
-    for (const key in form.value) {
-        if (form.value[key] !== seeker.user[key]) {
-            updatedFields[key] = form.value[key];
-        }
-    }
-    return updatedFields;
-});
+
+const isAnyFieldEmpty = () => {
+    return Object.values(form.experience).some(value => !value);
+};
+
 
 const updateExpe = () => {
-    if (!updatedFields.value.isEmpty) {
-        form.put(route("seeker.update"), {
-            ...updatedFields.value,
+    if (isAnyFieldEmpty()) {
+        toast.error('Please fill in all required fields before submitting.');
+    } else {
+        form.put(route('seeker.update'), {
             preserveScroll: true,
-            onFinish: () => form.reset(),
+            onSuccess: () => {
+                toast.success('Form submitted successfully.');
+                form.reset();
+            },
+            onError: () => {
+                toast.error('There was an issue submitting the form.');
+            }
         });
     }
-    console.log("EXPERIENCE", updatedFields);
 };
+
+const deleteExpe = () => {
+
+    form.delete()//experience to delete
+}
 </script>
 <template>
     <!-- EXPERIENCES -->
-    <!-- <div -->
-    <!--     class="w-full flex flex-wrap justify-start bg-white rounded-md my-4 px-2 py-2 border-slate-800" -->
-    <!-- > -->
-    <div class="mx-1 my-4 xl:w-[35%] lg:w-50%">
+    <div class="my-4 xl:w-[35%] lg:w-[50%] w-full">
         <div class="mt-1 m-auto w-[99%] px-2 py-2 bg-white rounded-md">
             <h1 class="text-xl text-center font-semibold py-1">Experiences</h1>
         </div>
+        <form class=" w-full grid grid-cols-2 gap-x-5 bg-white rounded-md" @submit.prevent="updateExpe">
+            <div :key="expe.id" v-for="expe in experiences"
+                class=" border-inherit  m-auto w-[12rem] max-sm:w-auto rounded-md">
 
-        <form class="my-2 bg-white rounded-md" @submit.prevent="updateExpe">
-            <div
-                :key="expe.id"
-                v-for="expe in experiences"
-                class="hover:shadow-2xl hover:translate-x-1 border-inherit border-[1px] py-1 px-2 flex my-1 shadow-sm flex-wrap justify-around mt-1 m-auto w-full lg:w-[90%] rounded-md"
-            >
-                <div
-                    class="text-white bg-blue-400 mt-12 w-[130px] h-[28px] px-1 pb-1 rounded-md flex align-middle"
-                >
-                    <div class="bg-blue-400 text-sm text-left py-2 px-">
-                        <input
-                            class="bg-blue-400 text-center text-[11px] h-full flex w-[50%] border-none shadow-sm rounded-md font-semibold"
-                            type="text"
-                            id="from"
-                            v-model="expe.from"
-                        />
+                <div class="">
+                    <div class="bg-blue-400  text-white mt-12 w-full h-[2rem] px-1 pb-1 rounded-md flex align-middle">
+                        <div class="text-sm  py-2 ">
+                            <input
+                                class="bg-blue-400 text-center text-[0.8rem] h-full flex w-full border-none shadow-sm rounded-md font-semibold"
+                                disabled type="text" id="from" v-model="expe.from" />
+                        </div>
+                        <div class="pt-1">-</div>
+                        <div class="text-sm text-left py-2">
+                            <input
+                                class="bg-blue-400 text-center text-[0.8rem] h-full flex w-full border-none shadow-sm rounded-md font-semibold"
+                                disabled type="text" id="to" v-model="expe.to" />
+                        </div>
                     </div>
-                    <div class="bg-slat300 flex items-center">-</div>
-                    <div class="text-sm text-left py-2">
-                        <input
-                            class="bg-blue-400 text-center text-[11px] h-full flex w-[50%] border-none shadow-sm rounded-md font-semibold"
-                            type="text"
-                            id="to"
-                            v-model="expe.to"
-                        />
-                    </div>
-                </div>
-                <div class="-300">
-                    <div class="max-sm:w-[150px] m-auto text-sm text-left py-2 px-">
+                    <div class="m-auto text-sm text-left py-2 px-">
                         <input
                             class="text-center h-8 w-full text-[14px] flex border-inherit shadow-sm rounded-md font-semibold"
-                            type="text"
-                            id="title"
-                            v-model="expe.title"
-                        />
+                            disabled type="text" id="title" v-model="expe.title" />
                     </div>
-                    <div class="flex items-center justify-center">-</div>
-                    <div class="max-sm:w-[150px] m-auto text-sm text-left py-2 px-">
+                    <!-- <div class="flex items-center justify-center">-</div> -->
+                    <div class=" m-auto text-sm text-left py-2 px-">
                         <input
                             class="text-center h-8 w-full text-[14px] flex border-inherit shadow-sm rounded-md font-semibold"
-                            type="text"
-                            id="place"
-                            v-model="expe.place"
-                        />
+                            disabled type="text" id="place" v-model="expe.place" />
                     </div>
                 </div>
             </div>
+        </form>
+        <form class="w-full grid grid-cols-1 my-2 bg-white rounded-md" @submit.prevent="updateExpe">
             <!-- UPLOAD -->
+            <div class="">
+                <div class="text-center font-semibold mt-10">ADD ANOTHER</div>
+            </div>
+
             <div
-                class="border-inherit border-[1px] py-1 px-2 flex my-1 shadow-sm flex-wrap justify-around mt-1 m-auto w-full lg:w-[90%] rounded-md"
-            >
-                <div
-                    class="text-white bg-blue-400 mt-12 w-[130px] h-[28px] px-1 pb-1 rounded-md flex align-middle"
-                >
-                    <div class="bg-blue-400 text-sm text-left py-2 px-">
-                        <input
-                            class="bg-blue-400 text-center text-[11px] h-full flex w-[50%] border-none shadow-sm rounded-md font-semibold"
-                            type="text"
-                            id="from"
-                            v-model="form.experience.from"
-                        />
+                class="grid  border-inherit border-[1px] py-1 px-2 flex my-1 shadow-sm flex-wrap justify-around mt-1 m-auto w-[12rem] max-sm:w-[10rem]  rounded-md">
+
+
+                <div class="">
+                    <div
+                        class="text-white bg-blue-400 mt-12  w-[11rem] m-auto  h-[2rem] px-1 pb-1 rounded-md flex align-middle">
+                        <div class="bg-blue-400 text-sm text-left py-2 px-">
+                            <input
+                                class="bg-blue-400 text-center  text-[0.8rem] h-full flex w-full border-none shadow-sm rounded-md font-semibold"
+                                type="text" id="from" v-model="form.experience.from" />
+                        </div>
+                        <div class="flex items-center">-</div>
+                        <div class="text-sm text-left py-2">
+                            <input
+                                class="bg-blue-400 text-center  text-[0.8rem] h-full flex w-full border-none shadow-sm rounded-md font-semibold"
+                                type="text" id="to" v-model="form.experience.to" />
+                        </div>
                     </div>
-                    <div class="bg-slat300 flex items-center">-</div>
-                    <div class="text-sm text-left py-2">
-                        <input
-                            class="bg-blue-400 text-center text-[11px] h-full flex w-[50%] border-none shadow-sm rounded-md font-semibold"
-                            type="text"
-                            id="to"
-                            v-model="form.experience.place"
-                        />
-                    </div>
-                </div>
-                <div class="-300">
-                    <div class="max-sm:w-[150px] m-auto text-sm text-left py-2 px-">
+                    <div class=" w-[11rem] m-auto text-sm text-left py-2 px-">
                         <input
                             class="text-center h-8 w-full text-[14px] flex border-inherit shadow-sm rounded-md font-semibold"
-                            type="text"
-                            id="title"
-                            v-model="form.experience.title"
-                        />
+                            type="text" id="title" v-model="form.experience.title" placeholder="title" />
                     </div>
 
-                    <div class="flex items-center justify-center">-</div>
-                    <div class="max-sm:w-[150px] m-auto text-sm text-left py-2 px-">
+
+                    <div class=" w-[11rem]  m-auto text-sm text-left py-2 px-">
                         <input
                             class="text-center h-8 w-full text-[14px] flex border-inherit shadow-sm rounded-md font-semibold"
-                            type="text"
-                            id="place"
-                            v-model="form.experience.place"
-                        />
+                            type="text" id="place" placeholder="comapny" v-model="form.experience.place" />
                     </div>
                 </div>
                 <div v-show="form.errors.experience">
@@ -152,5 +136,4 @@ const updateExpe = () => {
             </div>
         </form>
     </div>
-    <!-- </div> -->
 </template>

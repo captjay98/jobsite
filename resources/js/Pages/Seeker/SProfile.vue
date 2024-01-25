@@ -6,22 +6,26 @@ import Skill from "@/Pages/Seeker/SeekerComponents/Skill.vue";
 import Experiences from "@/Pages/Seeker/SeekerComponents/Experiences.vue";
 import Files from "@/Pages/Seeker/SeekerComponents/Files.vue";
 import Password from "@/Pages/Seeker/SeekerComponents/Password.vue";
+import { useToast } from "vue-toastification";
+
+const toast = useToast()
 
 const { seeker, message } = defineProps({
     seeker: Object,
     message: Object,
 });
 if (message) {
+    toast.success(message)
     console.log("MESSAGE", message.detail);
 }
 </script>
 <template>
-    <div v-show="message" class="animate-bounce repeat-2 absolute top-20 right-20 w-96 h-48 bg-blue-500">
+    <!-- <div v-show="message" class="animate-bounce repeat-2 absolute top-20 right-20 w-96 h-48 bg-blue-500">
         UPDATE SUCCESFUL
-    </div>
+    </div> -->
 
     <SeekerLayout>
-        <div class="max-sm:w-[99%] px-1 mr-1 rounded-md py-2 bg-gray-100">
+        <div class="max-sm:w-[99%] rounded-md py-2 bg-gray-100">
             <div class="my-2 m-auto w-full px-4 py-4 bg-white rounded-md">
                 <h1 class="text-xl text-center font-semibold py-4">Seeker Profile</h1>
             </div>
