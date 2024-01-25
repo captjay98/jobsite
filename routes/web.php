@@ -28,11 +28,11 @@ Route::get(
         return Inertia::render(
             'Welcome',
             [
-            'canLogin' => Route::has('login'),
-            'canRegister' => Route::has('register'),
-            'laravelVersion' => Application::VERSION,
-            'phpVersion' => PHP_VERSION,
-            'jobs' => Job::take(10)->get()
+                'canLogin' => Route::has('login'),
+                'canRegister' => Route::has('register'),
+                'laravelVersion' => Application::VERSION,
+                'phpVersion' => PHP_VERSION,
+                'jobs' => Job::take(8)->get()
             ]
         );
     }
