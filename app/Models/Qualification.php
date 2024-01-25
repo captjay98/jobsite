@@ -10,12 +10,11 @@ class Qualification extends Model
     use HasFactory;
 
     protected $fillable = [
-        'title',
-        'to',
+
         'from',
+        'to',
+        'title',
+        'place',
         'seeker_id',
     ];
-
-
-
 }
