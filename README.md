@@ -38,11 +38,22 @@ __Project Status__: _in progress_
 ## Features
   `Create Account` Users can Sign up as Employer or Seeker.
 
+  `Profile Management`   Seekers can populate and update their profile details, Employers can do same.
   
-  `Profile Management` Seekers can populate and update their profile details, Employers can do same.
+        Seeker Account:
+            email: seekerone@mail.com
+            password: SeekerOne01
+  
+        Employer Account:
+            email: employerone@mail.com
+            password: EmployerOne01
 
   
-  `Admin` Full Featured Admin Interface with control over the entire Application.
+  `Admin` Fully Featured Admin Interface with control over the entire Application.
+  
+        Admin Account:
+            email: admineone@mail.com
+            password: AdminOne01
 
   
   `Employers` Employers can post Jobs and update Job Status and Application Status.
