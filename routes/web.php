@@ -34,13 +34,11 @@ Route::get('/', function () {
 
 
 
-// Route::middleware('guest')->group(function () {
-// Route::group(function () {
-    Route::get('/jobs', [JobController::class, 'getAllJobs'])->name('jobs.all');
-    Route::post('/jobs', [JobController::class, 'searchJobs'])->name('jobs.search');
-    Route::get('/jobs/{job_id}', [JobController::class, 'getJob'])->name('jobs.one');
-// });
-// });
+Route::get('/jobs', [JobController::class, 'getAllJobs'])->name('jobs.all');
+Route::post('/jobs', [JobController::class, 'searchJobs'])->name('jobs.search');
+Route::get('/jobs/{job_id}', [JobController::class, 'getJob'])->name('jobs.one');
+
+
 
 
 #Admin Routes
@@ -59,9 +57,7 @@ Route::middleware(['auth', 'is_admin:"true"'])->group(function () {
         Route::get('/jobs', [AdminController::class, 'alljobs'])->name('jobs.all');
         Route::get('/jobs/{job_id}', [AdminController::class, 'oneJob'])->name('jobs.one');
         Route::get('/applications', [AdminController::class, 'allApplications'])->name('applications.all');
-        Route::get('/applications/{application_id}', [AdminController::class, 'allApplications'])->name('applications.all');
-        Route::get('/applications/{application_id}', [AdminController::class, 'oneApplication'])->name('applications.one');
-
+        Route::get('/applications/{application_id}', [AdminController::class, 'allApplications'])->name('applications.one');
     });
 });
 
@@ -71,9 +67,9 @@ Route::middleware(['auth', 'is_admin:"true"'])->group(function () {
 
 #Employer Routes
 Route::middleware(['auth', 'account_type:employer'])->group(function () {
+    Route::get('/employerprofile', [EmployerController::class, 'show'])->name('employer.profile');
     Route::name('employer.')->prefix('employer')->group(function () {
         Route::get('/dashboard', [EmployerController::class, 'index'])->name('dashboard');
-        ROute::get('/profile', [EmployerController::class, 'show'])->name('profile');
         Route::patch('/profile', [EmployerController::class, 'update'])->name('update');
 
         Route::get('/jobs/create', [JobController::class, 'employerShowCreateJob'])->name('jobs.show');
@@ -86,10 +82,6 @@ Route::middleware(['auth', 'account_type:employer'])->group(function () {
         Route::get('/applications/{job_id}', [ApplicationController::class, 'employerShowAll'])->name('applications.jobs.all');
         Route::get('/applicant/{application_id}', [ApplicationController::class, 'employerShowOne'])->name('applications.jobs.one');
         Route::patch('/applicant/{application_id}', [ApplicationController::class, 'employerUpdateOne'])->name('applications.jobs.updateOne');
-
-
-
-
     });
 });
 
@@ -97,29 +89,24 @@ Route::middleware(['auth', 'account_type:employer'])->group(function () {
 
 #Seeker Routes
 Route::middleware(['auth', 'account_type:seeker'])->group(function () {
-
+    Route::get('/profile', [SeekerController::class, 'show'])->name('seeker.profile');
     Route::name('seeker.')->prefix('seeker')->group(function () {
-
         Route::get('/dashboard', [SeekerController::class, 'index'])->name('dashboard');
-        ROute::get('/profile', [SeekerController::class, 'show'])->name('profile');
         Route::put('/profile', [SeekerController::class, 'update'])->name('update');
 
         Route::get('/jobs', [JobController::class, 'seekerShowAll'])->name('jobs.all');
         Route::get('/jobs/{job_id}', [JobController::class, 'seekerShowOne'])->name('jobs.one');
         Route::post('/jobs', [JobController::class, 'seekerSearchJobs'])->name('jobs.search');
+
         Route::get('/applications', [ApplicationController::class, 'seekerShowAll'])->name('applications.all');
         Route::get('/applications/{application_id}', [ApplicationController::class, 'seekerShowOne'])->name('applications.one');
         Route::middleware('throttle:2:1');
         Route::post('/apply', [ApplicationController::class, 'seekerApply'])->name('apply');
-
-
     });
-
-
 });
 
 // Route::fallback();
 
 // Route::middleware('auth')->group(function () {});
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
