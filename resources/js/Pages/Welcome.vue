@@ -69,14 +69,16 @@ const links = [
                 </div>
                 <div
                     class="xl:w-[50%] xl:mb-20 l:mb-20 md:px-8 w-full max-sm:pt-0 px-2 py-2 flex justify-center items-center">
-                    <img class="w-full h-full bg-white rounded-lg" :src="'/storage/icons/jobsite1.jpg'" alt="" />
+                    <img class="w-full h-full bg-white rounded-lg" :src="'/storage/icons/jobsite1.webp'" alt="Header Image"
+                        width="100%" height="100%" />
                 </div>
             </div>
         </div>
         <div class="py-28 px-8 my-16 h-auto bg-blue-100 lg:px-28">
             <div class="flex flex-wrap justify-between items-center mb-4">
                 <div class="lg:w-[50%] md:px-8 w-full flex justify-center">
-                    <img class="w-full h-full bg-white rounded-lg" :src="'/storage/icons/jobsite2.jpg'" alt="" />
+                    <img class="w-full h-full bg-white rounded-lg" :src="'/storage/icons/jobsite2.jpg'" alt="" width="100%"
+                        height="100%" loading="lazy" />
                 </div>
                 <div class="lg:w-[50%] md:px-8 w-full lg:px-8 px-2 py-16">
                     <h1 class="text-2xl">Thousands of Jobs</h1>
@@ -113,7 +115,8 @@ const links = [
                     </Link>
                 </div>
                 <div class="lg:w-[50%] md:px-8 w-full">
-                    <img class="w-full h-full bg-white rounded-lg -96" :src="'/storage/icons/jobsite3.png'" alt="" />
+                    <img class="w-full h-full bg-white rounded-lg -96" :src="'/storage/icons/jobsite3.webp'" alt=""
+                        width="100%" height="100%" loading="lazy" />
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -22,22 +22,21 @@ use App\Models\Job;
 |
 */
 
-Route::get(
-    '/',
-    function () {
-        return Inertia::render(
-            'Welcome',
-            [
-                'canLogin' => Route::has('login'),
-                'canRegister' => Route::has('register'),
-                'laravelVersion' => Application::VERSION,
-                'phpVersion' => PHP_VERSION,
-                'jobs' => Job::take(8)->get()
-            ]
-        );
-    }
-);
 
+
+Route::get('/', function () {
+    $jobs = Cache::remember('jobs', 3600, function () {
+        return Job::take(8)->get();
+    });
+
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+        'jobs' => $jobs
+    ]);
+});
 
 
 Route::get('/jobs', [JobController::class, 'getAllJobs'])->name('jobs.all');
