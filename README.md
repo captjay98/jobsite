@@ -1,5 +1,5 @@
 <p align="left">
-    <img height= "300px" src="https://imgur.com/DUXXzoj">
+    <img height= "300px" src="https://i.imgur.com/DUXXzoj.png">
 <p/>
 
  A Job Platform
