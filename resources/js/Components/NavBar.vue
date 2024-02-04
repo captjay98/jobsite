@@ -26,7 +26,7 @@ const drop = ref(false);
         <ul :key="link.name" v-for="link in links" class="flex space-x-5">
             <li
                 :class="{
-                    'text-slate-700 hover:text-blue-600 hover:underline hover:underline-offset-4':
+                    'text-slate-200 hover:text-blue-600 hover:underline hover:underline-offset-4':
                         $page.url === '/',
                     'text-slate-200 hover:text-blue-900 hover:underline hover:underline-offset-4':
                         $page.url !== '/',
