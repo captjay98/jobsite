@@ -17,6 +17,7 @@ const submit = () => {
 };
 </script>
 <template>
+    <Head title="Login" />
     <GuestLayout>
         <div class="w-96">
             <div class="">
