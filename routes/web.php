@@ -77,10 +77,11 @@ Route::middleware(['auth', 'is_admin:"true"'])->group(
 // Employer Routes
 Route::middleware(['auth', 'account_type:employer'])->group(
     function () {
-        Route::get('/employerprofile', [EmployerController::class, 'show'])->name('employer.profile');
         Route::name('employer.')->prefix('employer')->group(
             function () {
+
                 Route::get('/dashboard', [EmployerController::class, 'index'])->name('dashboard');
+                Route::get('/profile', [EmployerController::class, 'show'])->name('employer.profile');
                 Route::patch('/profile', [EmployerController::class, 'update'])->name('update');
 
                 Route::get('/jobs/create', [JobController::class, 'employerShowCreateJob'])->name('jobs.show');
@@ -103,10 +104,10 @@ Route::middleware(['auth', 'account_type:employer'])->group(
 // Seeker Routes
 Route::middleware(['auth', 'account_type:seeker'])->group(
     function () {
-        Route::get('/profile', [SeekerController::class, 'show'])->name('seeker.profile');
         Route::name('seeker.')->prefix('seeker')->group(
             function () {
                 Route::get('/dashboard', [SeekerController::class, 'index'])->name('dashboard');
+                Route::get('/profile', [SeekerController::class, 'show'])->name('seeker.profile');
                 Route::put('/profile', [SeekerController::class, 'update'])->name('update');
 
                 Route::get('/jobs', [JobController::class, 'seekerShowAll'])->name('jobs.all');
