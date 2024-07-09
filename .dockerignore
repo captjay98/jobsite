@@ -1,19 +1,28 @@
-/.phpunit.cache
-/node_modules
-/public/build
-/public/hot
-/public/storage
-/storage/*.key
-/vendor
-.env.backup
-.env.example
-.env.production
-.phpunit.result.cache
-Homestead.json
-Homestead.yaml
-auth.json
-npm-debug.log
-yarn-error.log
-/.fleet
-/.idea
-/.vscode
+# excludes from the docker image/build
+
+# 1. Ignore Laravel-specific files we don't need
+bootstrap/cache/*
+storage/framework/cache/*
+storage/framework/sessions/*
+storage/framework/views/*
+storage/logs/*
+*.env*
+.rr.yml
+rr
+frankenphp
+vendor
+
+# 2. Ignore common files/directories we don't need
+fly.toml
+.vscode
+.idea
+**/*node_modules
+**.git
+**.gitignore
+**.gitattributes
+**.sass-cache
+**/*~
+**/*.log
+**/.DS_Store
+**/Thumbs.db
+public/hot
